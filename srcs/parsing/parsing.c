@@ -6,50 +6,33 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 22:08:01 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/13 20:22:25 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2022/12/13 20:40:10 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fdf.h"
-
+#include "fdf.h"
 #include <fcntl.h>
 
-// size_t	**fill_map(t_map map, int fd, char **splited)
+// t_map	*create_map(int fd)
 // {
-// 	size_t	*line_int;
-// 	size_t	**tab_int;
-// 	size_t	x;
+// 	char	*line;
+// 	char	**splitted_line;
+// 	t_map	current_map;
 
-// 	line_int = malloc(sizeof(int) * map.width);
-// 	x = 0;
-// 	while (x < map.width)
-// 	{
-// 		line_int[x] = ft_atoi(splited[x]);
-// 		x++;
-// 	}
-// 	tab_int = malloc(sizeof(int *));
-// 	tab_int[0] = line_int;
-// 	return (tab_int);
+// 	line = get_next_line(fd);
+// 	splitted_line = ft_split(line, ' ');
+// 	current_map.width = array_length((void **)splitted_line);
+// 	current_map.content = fill_map(current_map, fd, splitted_line);
 // }
-
-t_map	*create_map(int fd)
-{
-	char	*line;
-	char	**splitted_line;
-	t_map	current_map;
-
-	line = get_next_line(fd);
-	splitted_line = ft_split(line, ' ');
-	current_map.width = array_length((void **)splitted_line);
-	current_map.content = fill_map(current_map, fd, splitted_line);
-}
 
 int	main(int argc, char const *argv[])
 {
-	int		fd;
-	t_map	*current_map;
+	int				fd;
+	t_file_chain	*s_text_in_list;
 
 	fd = open(argv[1], O_RDONLY);
-	current_map = create_map(fd);
+	s_text_in_list = put_file_in_list(fd);
+	ft_lstiter(s_text_in_list, \
+	ft_printf("current list : %d\n next list now\n", s_text_in_list->content));
 	return (0);
 }
