@@ -6,7 +6,7 @@
 #    By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:34:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/12/13 20:21:28 by gd-harco         ###   ########lyon.fr    #
+#    Updated: 2022/12/13 20:44:33 by gd-harco         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@
 # ---- Final Executable --- #
 
 NAME			=	fdf.out
+
+NAME_DEBUG		=	fdf_debug.out
 
 # ---- Directories ---- #
 
@@ -43,6 +45,8 @@ CC				=	cc
 
 CFLAGS			=	-Wall -Wextra -Werror
 
+CFLAGS_DEBUG	=	-g -Wall -Wextra -Werror
+
 # ---- Commands ---- #
 
 RM				=	rm -rf
@@ -53,12 +57,13 @@ MKDIR			=	mkdir -p
 
 all				: ${NAME}
 
+debug			: ${NAME_DEBUG}
 # ---- Variables Rules ---- #
 
 ${NAME}			:	${LIBFT} ${OBJS} ${HEADERS}
-					@echo "\033[0;32m [libft] ✔️ Binaries compiled from \033[1;36m${DIR_SRCS} \033[0;32mto \033[1;36m${DIR_OBJS} !"
 					${CC} ${CFLAGS} -I ${DIR_HEADERS}. ${OBJS} ${LIBFT} -o ${NAME}
-					@echo "\033[0;32m [libft] ✔️ Lib successfully built !"
+
+${NAME_DEBUG}	:	${LIBFT} ${OBJS} ${HEADERS}
 
 # ---- Compiled Rules ---- #
 
