@@ -53,7 +53,9 @@ C_FILES =		char/ft_isalnum.c	\
 				str/ft_strnstr.c	\
 				str/ft_strrchr.c	\
 				str/ft_strtrim.c	\
-				str/ft_substr.c
+				str/ft_substr.c		\
+\
+				array/ft_array_length.c
 
 SRCS = ${addprefix srcs/, ${C_FILES}}
 
@@ -66,6 +68,7 @@ HEADERS = 		${INCLUDES}char.h				\
 				${INCLUDES}numbers.h			\
 				${INCLUDES}str.h				\
 				${INCLUDES}get_next_line.h		\
+				${INCLUDES}array.h
 
 
 INCLUDES =		includes/
