@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   text_to_chained.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/11 14:57:53 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/13 20:07:30 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2022/12/13 18:23:46 by gd-harco          #+#    #+#             */
+/*   Updated: 2022/12/13 20:07:43 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-# include "../libft/includes/libft.h"
+#include "fdf.h"
 
-typedef struct s_map
+t_file_chain	*put_file_in_list(int fd)
 {
-	size_t	width;
-	size_t	height;
-	int		**content;
-}			t_map;
+	t_file_chain	*text_in_list;
+	char			*buff;
 
-typedef struct s_file_chain
-{
-	char				*content;
-	struct s_file_chain	*next;
-}					t_file_chain;
-
-t_file_chain	*put_file_in_list(int fd);
-
-#endif
+	buff = get_next_line(fd);
+	text_in_list->content = buff;
+	text_in_list->next = NULL;
+	free(buff);
+	buff = get_next_line(fd);
+	while (buff)
+	{
+		ft_lstadd_back(text_in_list, ft_lstnew(buff));
+		free (buff);
+		buff = get_next_line(fd);
+	}
+	return (text_in_list);
+}
