@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 22:08:01 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/13 20:40:10 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2022/12/14 14:52:17 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@
 int	main(int argc, char const *argv[])
 {
 	int				fd;
-	t_file_chain	*s_text_in_list;
+	t_list			*s_text_in_list;
 
+	if (argc != 2)
+	{
+		ft_printf("No map provided\n");
+		return (0);
+	}
 	fd = open(argv[1], O_RDONLY);
 	s_text_in_list = put_file_in_list(fd);
-	ft_lstiter(s_text_in_list, \
-	ft_printf("current list : %d\n next list now\n", s_text_in_list->content));
 	return (0);
 }
