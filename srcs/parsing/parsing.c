@@ -6,11 +6,11 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 22:08:01 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/14 14:52:17 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2022/12/14 16:53:21 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../../includes/fdf.h"
 #include <fcntl.h>
 
 // t_map	*create_map(int fd)
