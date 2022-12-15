@@ -6,29 +6,18 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 22:08:01 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/14 16:53:21 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 16:36:59 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 #include <fcntl.h>
 
-// t_map	*create_map(int fd)
-// {
-// 	char	*line;
-// 	char	**splitted_line;
-// 	t_map	current_map;
-
-// 	line = get_next_line(fd);
-// 	splitted_line = ft_split(line, ' ');
-// 	current_map.width = array_length((void **)splitted_line);
-// 	current_map.content = fill_map(current_map, fd, splitted_line);
-// }
-
 int	main(int argc, char const *argv[])
 {
 	int				fd;
-	t_list			*s_text_in_list;
+	t_list			*s_linked_text;
+	t_map			map;
 
 	if (argc != 2)
 	{
@@ -36,6 +25,14 @@ int	main(int argc, char const *argv[])
 		return (0);
 	}
 	fd = open(argv[1], O_RDONLY);
-	s_text_in_list = put_file_in_list(fd);
+	s_linked_text = put_file_in_list(fd);
+	close(fd);
+	map.content = linked_to_array(*s_linked_text);
+	ft_lstclear(&s_linked_text, free);
+	map.height = ft_array_length((void *)map.content);
+	ft_printf("map.height : %d\n", map.height);
+	map.width = ft_array_length((void **)map.content);
+	ft_printf("map.width : %d\n", map.width);
+
 	return (0);
 }
