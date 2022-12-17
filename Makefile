@@ -6,7 +6,7 @@
 #    By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:34:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/12/13 20:44:33 by gd-harco         ###   ########lyon.fr    #
+#    Updated: 2022/12/17 16:00:42 by gd-harco         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,15 @@ DIR_HEADERS		=	includes/
 
 HEADERS_LIST	=	fdf.h
 
-SRCS			=	parsing/parsing.c			parsing/text_to_chained.c
+C_FILES			=	parsing/chained_to_array.c	\
+					parsing/parsing.c			\
+					parsing/text_to_list.c
 
 LIBFT			=	libft.a
+
+LIBFT_DEBUG		=	libft_debug.a
+
+SRCS			= $(DIR_SRCS)$(C_FILES)
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
@@ -43,9 +49,9 @@ OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
 
 CC				=	cc
 
-CFLAGS			=	-Wall -Wextra -Werror
+FLAGS			=	-Wall -Wextra -Werror
 
-CFLAGS_DEBUG	=	-g -Wall -Wextra -Werror
+FLAGS_DEBUG		=	-g3 -fsanitize=address
 
 # ---- Commands ---- #
 
@@ -58,18 +64,24 @@ MKDIR			=	mkdir -p
 all				: ${NAME}
 
 debug			: ${NAME_DEBUG}
+
 # ---- Variables Rules ---- #
 
 ${NAME}			:	${LIBFT} ${OBJS} ${HEADERS}
 					${CC} ${CFLAGS} -I ${DIR_HEADERS}. ${OBJS} ${LIBFT} -o ${NAME}
 
-${NAME_DEBUG}	:	${LIBFT} ${OBJS} ${HEADERS}
+${NAME_DEBUG}	:	${LIBFT_DEBUG} ${OBJS} ${HEADERS}
 
 # ---- Compiled Rules ---- #
 
 ${LIBFT}		:
 					make -C libft/
 					mv libft/libft.a .
+
+${LIBFT_DEBUG}	:
+					make -C libft/ libft_debug
+					mv libft/libft_debug.a .
+
 ${OBJS}			:	| ${DIR_OBJS}
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
