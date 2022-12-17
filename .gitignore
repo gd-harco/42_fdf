@@ -3,7 +3,7 @@ a.out
 .vscode/settings.json
 bin/
 *.out
-a.out.dSYM/
+a.out.dSYM
 libft.a
 libft_debug.a
-
+objs
