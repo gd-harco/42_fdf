@@ -78,7 +78,7 @@ ${NAME_DEBUG}:			${LIBFT_DEBUG} ${OBJS_DEBUG}
 # ---- Compiled Rules ---- #
 
 ${DIR_OBJS}:
-						echo ${OBJS} | tr ' ' '\n'\
+						@echo ${OBJS} | tr ' ' '\n'\
 							| sed 's|\(.*\)/.*|\1|'\
 							| sed 's/^/${MKDIR} /'\
 							| sh -s
