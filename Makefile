@@ -6,7 +6,7 @@
 #    By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:34:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/12/17 16:38:55 by gd-harco         ###   ########lyon.fr    #
+#    Updated: 2022/12/17 17:11:11 by gd-harco         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,8 +64,8 @@ MKDIR			=	mkdir -p
 all:					${DIR_OBJS}
 						@${MAKE} ${NAME}
 
-debug:					${DIR_OBJS}
-						@${MAKE} ${NAME_DEBUG} FLAGS="${FLAGS} ${DEBUG_FLAGS}"
+debug:					${DIR_OBJS_DEBUG}
+						@${MAKE} ${NAME_DEBUG} FLAGS="${FLAGS} ${FLAGS_DEBUG}"
 
 # ---- Variables Rules ---- #
 
@@ -98,7 +98,7 @@ ${LIBFT}:
 						mv libft/libft.a .
 
 ${LIBFT_DEBUG}:
-						make -C libft/ libft_debug
+						make -C libft/ debug
 						mv libft/libft_debug.a .
 
 ${OBJS}:				| ${DIR_OBJS}
