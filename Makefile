@@ -31,7 +31,7 @@ DIR_HEADERS		=	includes/
 
 HEADERS_LIST	=	fdf.h
 
-C_FILES			=	parsing/chained_to_array.c	\
+SRCS			=	parsing/chained_to_array.c	\
 					parsing/parsing.c			\
 					parsing/text_to_list.c
 
@@ -39,11 +39,9 @@ LIBFT			=	libft.a
 
 LIBFT_DEBUG		=	libft_debug.a
 
-SRCS			= $(DIR_SRCS)$(C_FILES)
-
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
-OBJS			=	${addprefix ${DIR_OBJS},${SRCS:.c=.o}}
+OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
 
 OBJS_DEBUG		=	${addprefix ${DIR_OBJS},${SRCS:.c=_debug.o}}
 
@@ -72,15 +70,15 @@ debug:					${DIR_OBJS}
 # ---- Variables Rules ---- #
 
 ${NAME}:				${LIBFT} ${OBJS}
-						${CC} ${FLAGS} -I ${HEADERS} ${OBJS} ${LIBFT} -o ${NAME}
+						${CC} ${FLAGS} -I ${DIR_HEADERS} ${OBJS} ${LIBFT} -o ${NAME}
 
 ${NAME_DEBUG}:			${LIBFT_DEBUG} ${OBJS_DEBUG}
-						${CC} ${FLAGS} -I ${HEADERS} ${OBJS_DEBUG} ${LIBFT_DEBUG} -o ${NAME_DEBUG}
+						${CC} ${FLAGS} -I ${DIR_HEADERS} ${OBJS_DEBUG} ${LIBFT_DEBUG} -o ${NAME_DEBUG}
 
 # ---- Compiled Rules ---- #
 
 ${DIR_OBJS}:
-						@echo ${OBJS} | tr ' ' '\n'\
+						echo ${OBJS} | tr ' ' '\n'\
 							| sed 's|\(.*\)/.*|\1|'\
 							| sed 's/^/${MKDIR} /'\
 							| sh -s
@@ -89,11 +87,11 @@ ${DIR_OBJS}:
 							@# Adds mkdir -p at start of each lines
 							@# Executes the script (Creates all folders)
 
-${DIR_OBJS}%.o:			%.c ${HEADERS}
-						${CC} ${FLAGS} -I ${HEADERS} -c $< -o $@
+${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
+					${CC} ${CFLAGS} -I ${DIR_HEADERS}. -c $< -o $@
 
-${DIR_OBJS}%_debug.o:	%.c ${HEADERS}
-						${CC} ${FLAGS} -I ${HEADERS} -c $< -o $@
+${DIR_OBJS}%_debug.o:	${DIR_SRCS}%.c ${HEADERS}
+						${CC} ${FLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
 ${LIBFT}:
 						make -C libft/
