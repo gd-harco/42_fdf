@@ -69,7 +69,7 @@ debug:					${DIR_OBJS}
 
 # ---- Variables Rules ---- #
 
-${NAME}:				${LIBFT} ${OBJS}
+${NAME}:				${LIBFT} ${OBJS} ${DIR_HEADERS}
 						${CC} ${FLAGS} -I ${DIR_HEADERS} ${OBJS} ${LIBFT} -o ${NAME}
 
 ${NAME_DEBUG}:			${LIBFT_DEBUG} ${OBJS_DEBUG}
@@ -90,7 +90,7 @@ ${DIR_OBJS}:
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
 					${CC} ${CFLAGS} -I ${DIR_HEADERS}. -c $< -o $@
 
-${DIR_OBJS}%_debug.o:	${DIR_SRCS}%.c ${HEADERS}
+${DIR_OBJS}%_debug.o:	${DIR_SRCS}%.c ${DIR_HEADERS}
 						${CC} ${FLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
 ${LIBFT}:
