@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 22:08:01 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/15 16:36:59 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2022/12/18 14:57:04 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ int	main(int argc, char const *argv[])
 	ft_printf("map.height : %d\n", map.height);
 	map.width = ft_array_length((void **)map.content);
 	ft_printf("map.width : %d\n", map.width);
-
 	return (0);
 }
