@@ -6,12 +6,13 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:59:38 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/18 16:35:23 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2022/12/19 15:16:02 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <fcntl.h>
+#include <mlx.h>
 
 void	init_map(t_map *map)
 {
@@ -44,14 +45,14 @@ void	init_map(t_map *map)
 int	main(int argc, char const *argv[])
 {
 	t_map			map;
-	(void) argv[1];
+
+	(void)argv[1];
 	if (argc != 2)
 	{
 		ft_printf("No map provided\n");
 		return (0);
 	}
 	init_map(&map);
-// a décommenter lorsque parsing utilisable
-// map = parsing_full(argv[1]);
+
 	return (0);
 }
