@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 14:57:53 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/20 17:17:18 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 17:32:56 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # endif
 # if defined(__linux__)
 #  define MLXH "../files/linux/minilibx-linux/mlx.h"
+# endif
+# ifndef SIZE_X
+#  define SIZE_X 1280
+# endif
+# ifndef SIZE_Y
+#  define SIZE_Y 720
 # endif
 
 typedef struct s_map

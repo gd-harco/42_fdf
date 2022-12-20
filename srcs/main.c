@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:59:38 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/20 16:49:58 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 17:35:12 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void	init_map(t_map *map)
 
 int	main(int argc, char const *argv[])
 {
-	t_map			map;
+	t_map	map;
+	void	*mlx;
+	void	*window;
 
 	(void)argv[1];
 	if (argc != 2)
@@ -53,5 +55,8 @@ int	main(int argc, char const *argv[])
 		return (0);
 	}
 	init_map(&map);
+	mlx = mlx_init();
+	window = mlx_new_window(mlx, SIZE_X, SIZE_Y, "test");
+	mlx_loop(mlx);
 	return (0);
 }
