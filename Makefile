@@ -6,7 +6,7 @@
 #    By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:34:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/12/18 16:09:24 by gd-harco         ###   ########lyon.fr    #
+#    Updated: 2022/12/20 17:24:30 by gd-harco         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,20 @@ LIBFT			=	libft.a
 
 LIBFT_DEBUG		=	libft_debug.a
 
+MLX				=	libmlx.a
+
+UNAME = $(shell uname)
+
+ifeq (${UNAME}, Darwin)
+MLX_DIR			=	files/macos/minilibx_macos/
+endif
+
+ifeq (${UNAME}, Linux)
+MLX_DIR			=	files/linux/minilibx-linux
+endif
+
+FLAGS_FRAMEWORK	=	-framework OpenGL -framework AppKit
+
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
 OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
@@ -70,11 +84,11 @@ debug:					${DIR_OBJS_DEBUG}
 
 # ---- Variables Rules ---- #
 
-${NAME}:				${LIBFT} ${OBJS} ${DIR_HEADERS}
-						${CC} ${FLAGS} -I ${DIR_HEADERS} ${OBJS} ${LIBFT} -o ${NAME}
+${NAME}:				${LIBFT} ${OBJS} ${DIR_HEADERS} ${MLX}
+						${CC} ${FLAGS} -I ${DIR_HEADERS}. ${FLAGS_FRAMEWORK} ${OBJS} ${LIBFT} ${MLX} -o ${NAME}
 
-${NAME_DEBUG}:			${LIBFT_DEBUG} ${OBJS_DEBUG}
-						${CC} ${FLAGS} -I ${DIR_HEADERS} ${OBJS_DEBUG} ${LIBFT_DEBUG} -o ${NAME_DEBUG}
+${NAME_DEBUG}:			${LIBFT_DEBUG} ${OBJS_DEBUG} ${MLX}
+						${CC} ${FLAGS} -I ${DIR_HEADERS} ${FLAGS_FRAMEWORK} ${OBJS_DEBUG} ${LIBFT_DEBUG} -o ${NAME_DEBUG}
 
 # ---- Compiled Rules ---- #
 
@@ -89,7 +103,7 @@ ${DIR_OBJS}:
 							@# Executes the script (Creates all folders)
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
-					${CC} ${CFLAGS} -I ${DIR_HEADERS}. -c $< -o $@
+					${CC} ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
 ${DIR_OBJS}%_debug.o:	${DIR_SRCS}%.c ${DIR_HEADERS}
 						${CC} ${FLAGS} -I ${DIR_HEADERS} -c $< -o $@
@@ -102,16 +116,20 @@ ${LIBFT_DEBUG}:
 						make -C libft/ debug
 						mv libft/libft_debug.a .
 
+${MLX}:
+						make -C ${MLX_DIR}
+						mv ${MLX_DIR}libmlx.a .
+
 ${OBJS}:				| ${DIR_OBJS}
 
 
 # ---- Usual Rules ---- #
 
 clean:
-					${RM} ${OBJS} ${OBJS_DEBUG} ${LIBFT} ${LIBFT_DEBUG}
+					${RM} ${OBJS} ${OBJS_DEBUG} ${LIBFT} ${LIBFT_DEBUG} ${MLX}
 
 fclean:				clean
-					${RM} ${NAME}
+					${RM} ${NAME} ${NAME_DEBUG}
 
 re:					fclean all
 
