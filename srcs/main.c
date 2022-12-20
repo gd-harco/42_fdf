@@ -6,13 +6,13 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:59:38 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/19 15:16:02 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 16:39:24 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include MLXH
 #include <fcntl.h>
-#include <mlx.h>
 
 void	init_map(t_map *map)
 {
