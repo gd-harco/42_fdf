@@ -5,5 +5,5 @@ bin/
 *.out
 a.out.dSYM
 libft.a
-libft_debug.a
+*.a
 objs

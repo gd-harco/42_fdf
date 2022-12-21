@@ -6,7 +6,7 @@
 #    By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:34:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/12/20 17:24:30 by gd-harco         ###   ########lyon.fr    #
+#    Updated: 2022/12/21 18:24:17 by gd-harco         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,19 +40,25 @@ LIBFT			=	libft.a
 
 LIBFT_DEBUG		=	libft_debug.a
 
+FLAGS_FRAMEWORK	=	-Llib/mlx/linux -Llib/libft -lmlx -lft
+
 MLX				=	libmlx.a
 
 UNAME = $(shell uname)
 
+# ---- Compil MacOS ---- #
 ifeq (${UNAME}, Darwin)
-MLX_DIR			=	files/macos/minilibx_macos/
+OS				=	macos
+FLAGS_FRAMEWORK	+=	-framework OpenGL -framework AppKit
 endif
 
+# ---- Compil Linux ---- #
 ifeq (${UNAME}, Linux)
-MLX_DIR			=	files/linux/minilibx-linux
+OS				=	linux
+FLAGS_FRAMEWORK	+=	-lXext -lX11 -lm -lz
 endif
 
-FLAGS_FRAMEWORK	=	-framework OpenGL -framework AppKit
+MLX_DIR			=	lib/mlx/${OS}
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
@@ -85,7 +91,7 @@ debug:					${DIR_OBJS_DEBUG}
 # ---- Variables Rules ---- #
 
 ${NAME}:				${LIBFT} ${OBJS} ${DIR_HEADERS} ${MLX}
-						${CC} ${FLAGS} -I ${DIR_HEADERS}. ${FLAGS_FRAMEWORK} ${OBJS} ${LIBFT} ${MLX} -o ${NAME}
+						${CC} ${FLAGS} -I ${DIR_HEADERS} ${OBJS} ${FLAGS_FRAMEWORK} -o ${NAME}
 
 ${NAME_DEBUG}:			${LIBFT_DEBUG} ${OBJS_DEBUG} ${MLX}
 						${CC} ${FLAGS} -I ${DIR_HEADERS} ${FLAGS_FRAMEWORK} ${OBJS_DEBUG} ${LIBFT_DEBUG} -o ${NAME_DEBUG}
@@ -109,17 +115,13 @@ ${DIR_OBJS}%_debug.o:	${DIR_SRCS}%.c ${DIR_HEADERS}
 						${CC} ${FLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
 ${LIBFT}:
-						make -C libft/
-						mv libft/libft.a .
+						make -C lib/libft/
 
 ${LIBFT_DEBUG}:
-						make -C libft/ debug
-						mv libft/libft_debug.a .
+						make -C lib/libft/ debug
 
 ${MLX}:
 						make -C ${MLX_DIR}
-						mv ${MLX_DIR}libmlx.a .
-
 ${OBJS}:				| ${DIR_OBJS}
 
 
