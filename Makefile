@@ -6,7 +6,7 @@
 #    By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:34:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/12/21 18:24:17 by gd-harco         ###   ########lyon.fr    #
+#    Updated: 2022/12/28 19:04:07 by gd-harco         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,11 @@ DIR_HEADERS		=	includes/
 
 HEADERS_LIST	=	fdf.h
 
-SRCS			=	parsing/chained_to_array.c	\
-					parsing/parsing.c			\
-					parsing/text_to_list.c		\
-					main.c
+SRCS			=	parsing/chained_to_array.c		\
+					parsing/parsing.c				\
+					parsing/text_to_list.c			\
+					graphics_renders/create_image.c	\
+					# main.c							\
 
 LIBFT			=	libft.a
 

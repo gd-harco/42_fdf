@@ -6,18 +6,18 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 14:57:53 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/20 17:32:56 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2022/12/28 19:16:19 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include "../libft/includes/libft.h"
+# include "../lib/libft/includes/libft.h"
 # if defined(__APPLE__)
-#  define MLXH "../files/macos/minilibx_macos/mlx.h"
+#  include "../lib/mlx/macos/mlx.h"
 # endif
 # if defined(__linux__)
-#  define MLXH "../files/linux/minilibx-linux/mlx.h"
+#  define MLXH "/usr/include/mlx.h"
 # endif
 # ifndef SIZE_X
 #  define SIZE_X 1280
@@ -25,6 +25,15 @@
 # ifndef SIZE_Y
 #  define SIZE_Y 720
 # endif
+# include <fcntl.h>
+
+typedef struct s_data{
+	void	*img;
+	char	*addr;
+	int		line_length;
+	int		bits_per_pixel;
+	int		endian;
+}	t_data;
 
 typedef struct s_map
 {
