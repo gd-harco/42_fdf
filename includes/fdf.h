@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 14:57:53 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/28 19:16:19 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2022/12/29 12:20:29 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #  include "../lib/mlx/macos/mlx.h"
 # endif
 # if defined(__linux__)
-#  define MLXH "/usr/include/mlx.h"
+#  include <mlx.h>
 # endif
 # ifndef SIZE_X
 #  define SIZE_X 1280
@@ -27,13 +27,6 @@
 # endif
 # include <fcntl.h>
 
-typedef struct s_data{
-	void	*img;
-	char	*addr;
-	int		line_length;
-	int		bits_per_pixel;
-	int		endian;
-}	t_data;
 
 typedef struct s_map
 {
@@ -41,6 +34,14 @@ typedef struct s_map
 	int	height;
 	int	**content;
 }	t_map;
+
+typedef struct	s_data {
+    void	*img;
+    char	*addr;
+    int		bits_per_pixel;
+    int		line_length;
+    int		endian;
+}				t_data;
 
 t_list	*put_file_in_list(int fd);
 int		**linked_to_array(t_list list);

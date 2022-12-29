@@ -6,12 +6,12 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:59:38 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/28 19:12:16 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2022/12/28 19:51:28 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
-#include <mlx.h>
+#include "fdf.h"
+#include "mlx.h"
 
 void	init_map(t_map *map)
 {
@@ -58,4 +58,5 @@ int	main(int argc, char const *argv[])
 	window = mlx_new_window(mlx, SIZE_X, SIZE_Y, "test");
 	mlx_loop(mlx);
 	return (0);
+
 }
