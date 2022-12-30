@@ -43,6 +43,7 @@ LIBFT_DEBUG		=	libft_debug.a
 
 FLAGS_FRAMEWORK	=	-Llib/mlx/linux -Llib/libft -lmlx -lft
 
+FLAGS_DEBUG		=
 MLX				=	libmlx.a
 
 UNAME = $(shell uname)
@@ -51,12 +52,14 @@ UNAME = $(shell uname)
 ifeq (${UNAME}, Darwin)
 OS				=	macos
 FLAGS_FRAMEWORK	+=	-framework OpenGL -framework AppKit
+FLAGS_DEBUG		=	-Llib/libft -lft_debug +${FLAGS_FRAMEWORK}
 endif
 
 # ---- Compil Linux ---- #
 ifeq (${UNAME}, Linux)
 OS				=	linux
 FLAGS_FRAMEWORK	+=	-lXext -lX11 -lm -lz
+FLAGS_DEBUG		=	-Llib/libft -lft_debug +${FLAGS_FRAMEWORK}
 endif
 
 MLX_DIR			=	lib/mlx/${OS}
@@ -87,7 +90,7 @@ all:					${DIR_OBJS}
 						@${MAKE} ${NAME}
 
 debug:					${DIR_OBJS_DEBUG}
-						@${MAKE} ${NAME_DEBUG} FLAGS="${FLAGS} ${FLAGS_DEBUG}"
+						@${MAKE} ${NAME_DEBUG}
 
 # ---- Variables Rules ---- #
 
@@ -95,7 +98,7 @@ ${NAME}:				${LIBFT} ${OBJS} ${DIR_HEADERS} ${MLX}
 						${CC} ${FLAGS} -I ${DIR_HEADERS} ${OBJS} ${FLAGS_FRAMEWORK} -o ${NAME}
 
 ${NAME_DEBUG}:			${LIBFT_DEBUG} ${OBJS_DEBUG} ${MLX}
-						${CC} ${FLAGS} -I ${DIR_HEADERS} ${FLAGS_FRAMEWORK} ${OBJS_DEBUG} ${LIBFT_DEBUG} -o ${NAME_DEBUG}
+						${CC} ${FLAGS} -I ${DIR_HEADERS} ${FLAGS_DEBUG} ${OBJS_DEBUG} -o ${NAME_DEBUG}
 
 # ---- Compiled Rules ---- #
 
