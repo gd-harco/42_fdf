@@ -29,7 +29,7 @@ void    create_line(t_data *data)
 
     while (i< 150)
     {
-        my_mlx_pixel_put(data, i, i, 0xFFF2CC);
+        my_mlx_pixel_put(data, 2*i, i, 0xFFF2CC);
         i++;
     }
 }

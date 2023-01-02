@@ -139,4 +139,7 @@ fclean:				clean
 
 re:					fclean all
 
+run:				${NAME}
+					./fdf.out 42.fdf
+
 .PHONY:	all clean fclean re
