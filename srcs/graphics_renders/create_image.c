@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:11:07 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/29 18:20:14 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/02 19:59:10 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void    create_line(t_data *data)
     }
 }
 
-int	main(void)
+int	blabla(void)
 {
     void	*mlx;
     void	*mlx_win;
@@ -48,4 +48,5 @@ int	main(void)
     create_line(&img);
     mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
     mlx_loop(mlx);
+	return 0;
 }

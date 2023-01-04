@@ -6,7 +6,7 @@
 #    By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 15:42:45 by gd-harco          #+#    #+#              #
-#    Updated: 2022/12/17 16:39:02 by gd-harco         ###   ########lyon.fr    #
+#    Updated: 2023/01/02 20:03:03 by gd-harco         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,11 +96,11 @@ OBJS_DEBUG		=	${addprefix ${DIR_OBJS},${SRCS:.c=_debug.o}}
 
 # ---- Compilation ---- #
 
-CC				= cc
+CC				=	cc
 
-FLAGS 			= -Wall -Wextra -Werror
+FLAGS			=	-Wall -Wextra -Werror
 
-DEBUG_FLAGS		=-g3 -fsanitize=address
+DEBUG_FLAGS		=	-g3 -fsanitize=address
 
 
 # ---- Commands ---- #

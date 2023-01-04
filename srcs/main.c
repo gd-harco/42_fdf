@@ -47,13 +47,12 @@ int	main(int argc, char const *argv[])
 	void	*mlx;
 	void	*window;
 
-	(void)argv[1];
 	if (argc != 2)
 	{
 		ft_printf("No map provided\n");
 		return (0);
 	}
-	init_map(&map);
+	map = parsing_full(argv[1]);
 	mlx = mlx_init();
 	window = mlx_new_window(mlx, SIZE_X, SIZE_Y, "test");
 	mlx_loop(mlx);
