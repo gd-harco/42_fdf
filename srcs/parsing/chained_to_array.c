@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fdf.h"
+#include "fdf.h"
 
 int	*create_array_line(int i, t_list *list)
 {
@@ -36,19 +36,39 @@ int	*create_array_line(int i, t_list *list)
 	return (int_line);
 }
 
-int	**linked_to_array(t_list list)
+static size_t	get_nb_word(char const *s, char c)
+{
+	size_t	nb_word;
+	size_t	x;
+
+	x = 0;
+	nb_word = 0;
+	while (s[x])
+	{
+		if (s[x] != c)
+			nb_word++;
+		while (s[x] && s[x] != c)
+			x++;
+		if (s[x])
+			x++;
+	}
+	return (nb_word);
+}
+
+void	linked_to_array(t_list list, t_map *map)
 {
 	int	array_height;
 	int	**map_array;
 	int	i;
 
-	array_height = ft_lstsize(&list);
-	map_array = malloc(sizeof(int *) * array_height);
+	map->height = ft_lstsize(&list);
+	map->width = get_nb_word(list.content, ' ');
+	map_array = ft_calloc(sizeof(int *), map->height);
 	i = 0;
-	while (i < array_height)
+	while (i < map->height)
 	{
 		map_array[i] = create_array_line(i, &list);
 		i++;
 	}
-	return (map_array);
+	map->content = map_array;
 }

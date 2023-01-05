@@ -6,12 +6,11 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:59:38 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/28 19:51:28 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/04 15:49:50 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "mlx.h"
 
 void	init_map(t_map *map)
 {
@@ -44,7 +43,6 @@ void	init_map(t_map *map)
 int	main(int argc, char const *argv[])
 {
 	t_map	map;
-	void	*mlx;
 	void	*window;
 
 	if (argc != 2)
@@ -53,9 +51,6 @@ int	main(int argc, char const *argv[])
 		return (0);
 	}
 	map = parsing_full(argv[1]);
-	mlx = mlx_init();
-	window = mlx_new_window(mlx, SIZE_X, SIZE_Y, "test");
-	mlx_loop(mlx);
+	ft_printf("prout");
 	return (0);
-
 }

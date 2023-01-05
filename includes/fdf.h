@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 14:57:53 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/29 12:20:29 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 14:39:46 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # endif
 # include <fcntl.h>
 
-
 typedef struct s_map
 {
 	int	width;
@@ -44,8 +43,7 @@ typedef struct	s_data {
 }				t_data;
 
 t_list	*put_file_in_list(int fd);
-int		**linked_to_array(t_list list);
+void	linked_to_array(t_list list, t_map *map);
 t_map	parsing_full(const char *file);
-
 
 #endif

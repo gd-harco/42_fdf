@@ -10,8 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fdf.h"
+#include "fdf.h"
 #include <fcntl.h>
+
+void    ft_print_map(t_map map)
+{
+    size_t i;
+    size_t j;
+
+    i = 0;
+    while (i < map.height)
+    {
+        j = 0;
+        while (j < map.width)
+        {
+            ft_printf("%d ", map.content[i][j]);
+            j++;
+        }
+        ft_printf("\n");
+        i++;
+    }
+}
 
 t_map	parsing_full(const char *file)
 {
@@ -21,10 +40,10 @@ t_map	parsing_full(const char *file)
 
 	fd = open(file, O_RDONLY);
 	s_linked_text = put_file_in_list(fd);
+    ft_lstiter(s_linked_text, ft_printf);
 	close(fd);
-	map.content = linked_to_array(*s_linked_text);
+	linked_to_array(*s_linked_text, &map);
 	ft_lstclear(&s_linked_text, free);
-	map.height = ft_array_length((void *)map.content);
-	map.width = ft_array_length((void **)map.content);
+    ft_print_map(map);
 	return (map);
 }

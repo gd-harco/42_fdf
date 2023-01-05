@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/16 13:34:19 by dbiguene          #+#    #+#              #
-#    Updated: 2023/01/02 20:16:27 by gd-harco         ###   ########lyon.fr    #
+#    Created: 2022/11/16 13:34:19 by gd-harco          #+#    #+#              #
+#    Updated: 2023/01/04 15:52:34 by gd-harco         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,16 +34,15 @@ HEADERS_LIST	=	fdf.h
 SRCS			=	parsing/chained_to_array.c		\
 					parsing/parsing.c				\
 					parsing/text_to_list.c			\
-					graphics_renders/create_image.c	\
-					main.c							\
+					main.c
+#					graphics_renders/create_image.c	\
 
 LIBFT			=	libft.a
 
 LIBFT_DEBUG		=	libft_debug.a
 
-FLAGS_FRAMEWORK	=	-Llib/mlx/linux -Llib/libft -lmlx -lft
+FLAGS_FRAMEWORK	=	-Llib/mlx/macos -Llib/libft -lmlx -lft
 
-FLAGS_DEBUG		=
 MLX				=	libmlx.a
 
 UNAME = $(shell uname)
@@ -74,10 +73,9 @@ OBJS_DEBUG		=	${addprefix ${DIR_OBJS},${SRCS:.c=_debug.o}}
 
 CC				=	cc
 
-FLAGS			=
 # FLAGS			=	-Wall -Wextra -Werror
 
-FLAGS_DEBUG		=	-g3 -fsanitize=address
+FLAGS_DEBUG		=	-g
 
 # ---- Commands ---- #
 
@@ -93,7 +91,11 @@ all:					${DIR_OBJS}
 debug:					${DIR_OBJS_DEBUG}
 						@${MAKE} ${NAME_DEBUG}
 
+debug_parsing:			${DIR_OBJS_DEBUG}
+						@${MAKE} parsing
+
 # ---- Variables Rules ---- #
+
 
 ${NAME}:				${LIBFT} ${OBJS} ${DIR_HEADERS} ${MLX}
 						${CC} ${FLAGS} -I ${DIR_HEADERS} ${OBJS} ${FLAGS_FRAMEWORK} -o ${NAME}
@@ -101,6 +103,8 @@ ${NAME}:				${LIBFT} ${OBJS} ${DIR_HEADERS} ${MLX}
 ${NAME_DEBUG}:			${LIBFT_DEBUG} ${OBJS_DEBUG} ${MLX}
 						${CC} ${FLAGS_DEBUG} -I ${DIR_HEADERS} ${OBJS_DEBUG} ${FLAGS_FRAMEWORK} -o ${NAME_DEBUG}
 
+parsing:				${LIBFT_DEBUG} ${OBJS_DEBUG}
+						${CC} ${FLAGS_DEBUG} -I ${DIR_HEADERS} ${OBJS_DEBUG} -Llib/libft -lft_debug -o parsing.out
 # ---- Compiled Rules ---- #
 
 ${DIR_OBJS}:
@@ -117,7 +121,7 @@ ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
 					${CC} ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
 ${DIR_OBJS}%_debug.o:	${DIR_SRCS}%.c ${DIR_HEADERS}
-						${CC} ${FLAGS} -I ${DIR_HEADERS} -c $< -o $@
+						${CC} ${FLAGS} -g -I ${DIR_HEADERS} -c $< -o $@
 
 ${LIBFT}:
 						make -C lib/libft/
@@ -127,6 +131,7 @@ ${LIBFT_DEBUG}:
 
 ${MLX}:
 						make -C ${MLX_DIR}
+
 ${OBJS}:				| ${DIR_OBJS}
 
 

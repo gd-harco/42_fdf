@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fdf.h"
+#include "fdf.h"
 
 t_list	*put_file_in_list(int fd)
 {
@@ -25,6 +25,5 @@ t_list	*put_file_in_list(int fd)
 		ft_lstadd_back(&text_in_list, ft_lstnew((void *)buff));
 		buff = get_next_line(fd);
 	}
-	free(buff);
 	return (text_in_list);
 }

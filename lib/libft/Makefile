@@ -6,7 +6,7 @@
 #    By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 15:42:45 by gd-harco          #+#    #+#              #
-#    Updated: 2023/01/02 20:03:03 by gd-harco         ###   ########lyon.fr    #
+#    Updated: 2023/01/04 15:46:14 by gd-harco         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,7 +100,7 @@ CC				=	cc
 
 FLAGS			=	-Wall -Wextra -Werror
 
-DEBUG_FLAGS		=	-g3 -fsanitize=address
+DEBUG_FLAGS		=	-g
 
 
 # ---- Commands ---- #
