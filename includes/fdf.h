@@ -29,17 +29,17 @@
 
 typedef struct s_map
 {
-	int	width;
-	int	height;
+	size_t 	width;
+	size_t 	height;
 	int	**content;
 }	t_map;
 
 typedef struct	s_data {
-    void	*img;
-    char	*addr;
-    int		bits_per_pixel;
-    int		line_length;
-    int		endian;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }				t_data;
 
 t_list	*put_file_in_list(int fd);

@@ -57,9 +57,8 @@ static size_t	get_nb_word(char const *s, char c)
 
 void	linked_to_array(t_list list, t_map *map)
 {
-	int	array_height;
-	int	**map_array;
-	int	i;
+	int		**map_array;
+	size_t	i;
 
 	map->height = ft_lstsize(&list);
 	map->width = get_nb_word(list.content, ' ');

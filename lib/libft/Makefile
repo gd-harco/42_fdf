@@ -100,7 +100,7 @@ CC				=	cc
 
 FLAGS			=	-Wall -Wextra -Werror
 
-DEBUG_FLAGS		=	-g
+DEBUG_FLAGS		=	-g -fsanitize=address
 
 
 # ---- Commands ---- #

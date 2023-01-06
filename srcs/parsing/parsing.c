@@ -40,10 +40,8 @@ t_map	parsing_full(const char *file)
 
 	fd = open(file, O_RDONLY);
 	s_linked_text = put_file_in_list(fd);
-    ft_lstiter(s_linked_text, ft_printf);
 	close(fd);
 	linked_to_array(*s_linked_text, &map);
 	ft_lstclear(&s_linked_text, free);
-    ft_print_map(map);
 	return (map);
 }
