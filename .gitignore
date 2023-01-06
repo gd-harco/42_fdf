@@ -6,3 +6,4 @@ a.out.dSYM
 libft.a
 *.a
 objs
+*.log

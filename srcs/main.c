@@ -15,7 +15,6 @@
 int	main(int argc, char const *argv[])
 {
 	t_map	map;
-//	void	*window;
 
 	if (argc != 2)
 	{
@@ -23,9 +22,8 @@ int	main(int argc, char const *argv[])
 		return (0);
 	}
 	map = parsing_full(argv[1]);
+	//TODO graphics rendering code
+	graphics_init(&map);
 	ft_free_array((void *)map.content);
-	for (int i = 0; i < map.height; i++)
-		free(map.content[i]);
-	free(map.content);
-	return(0);
+	return (0);
 }

@@ -13,23 +13,23 @@
 #include "fdf.h"
 #include <fcntl.h>
 
-void    ft_print_map(t_map map)
+void	ft_print_map(t_map map)
 {
-    size_t i;
-    size_t j;
+	size_t	i;
+	size_t	j;
 
-    i = 0;
-    while (i < map.height)
-    {
-        j = 0;
-        while (j < map.width)
-        {
-            ft_printf("%d ", map.content[i][j]);
-            j++;
-        }
-        ft_printf("\n");
-        i++;
-    }
+	i = 0;
+	while (i < map.height)
+	{
+		j = 0;
+		while (j < map.width)
+		{
+			ft_printf("%d ", map.content[i][j]);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
 }
 
 t_map	parsing_full(const char *file)

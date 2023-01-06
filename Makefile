@@ -29,12 +29,15 @@ DIR_HEADERS		=	includes/
 
 # ---- Files ---- #
 
-HEADERS_LIST	=	fdf.h
+HEADERS_LIST	=	fdf.h						\
+					graphics.h
 
-SRCS			=	parsing/chained_to_array.c		\
-					parsing/parsing.c				\
-					parsing/text_to_list.c			\
-					main.c
+SRCS			=	main.c						\
+					parsing/chained_to_array.c	\
+					parsing/parsing.c			\
+					parsing/text_to_list.c		\
+\
+					graphics_renders/create_image.c
 
 LIBFT			=	libft.a
 
@@ -106,10 +109,6 @@ ${DIR_OBJS}:
 							| sed 's|\(.*\)/.*|\1|'\
 							| sed 's/^/${MKDIR} /'\
 							| sh -s
-						@# Prints all OBJS. 1 per line
-							@# Removes the .o file names
-							@# Adds mkdir -p at start of each lines
-							@# Executes the script (Creates all folders)
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
 					${CC} ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@

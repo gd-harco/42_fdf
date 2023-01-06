@@ -13,19 +13,6 @@
 #ifndef FDF_H
 # define FDF_H
 # include "../lib/libft/includes/libft.h"
-# if defined(__APPLE__)
-#  include "../lib/mlx/macos/mlx.h"
-# endif
-# if defined(__linux__)
-#  include <mlx.h>
-# endif
-# ifndef SIZE_X
-#  define SIZE_X 1280
-# endif
-# ifndef SIZE_Y
-#  define SIZE_Y 720
-# endif
-# include <fcntl.h>
 
 typedef struct s_map
 {
@@ -34,16 +21,9 @@ typedef struct s_map
 	int	**content;
 }	t_map;
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 
 t_list	*put_file_in_list(int fd);
 void	linked_to_array(t_list list, t_map *map);
 t_map	parsing_full(const char *file);
-
+void	graphics_init(t_map *map);
 #endif

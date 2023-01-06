@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   text_to_list.c                                     :+:      :+:    :+:   */
+/*   graphics.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 18:23:46 by gd-harco          #+#    #+#             */
-/*   Updated: 2022/12/15 16:26:57 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2023/01/06 16:23:00 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/01/06 16:23:00 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+#ifndef GRAPHICS_H
+# define GRAPHICS_H
+#if defined(__APPLE__)
+#  include "../lib/mlx/macos/mlx.h"
+# endif
+# if defined(__linux__)
+#  include <mlx.h>
+# endif
+# ifndef SIZE_X
+#  define SIZE_X 1280
+# endif
+# ifndef SIZE_Y
+#  define SIZE_Y 720
+# endif
+# include <fcntl.h>
 
-#include "fdf.h"
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
-t_list	*put_file_in_list(int fd)
-{
-	t_list	*text_in_list;
-	t_list	*new_node;
-	char	*buff;
 
-	text_in_list = NULL;
-	buff = get_next_line(fd);
-	while (buff)
-	{
-		new_node = ft_lstnew((void *)buff);
-		if (new_node == NULL)
-			exit(1);
-		ft_lstadd_back(&text_in_list, new_node);
-		buff = get_next_line(fd);
-	}
-	return (text_in_list);
-}
+#endif

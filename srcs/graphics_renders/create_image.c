@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "graphics.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -20,32 +21,30 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void    create_line(t_data *data)
+void	create_line(t_data *data)
 {
-    int i;
+	int	i;
 
-    i = 20;
-
-    while (i< 150)
-    {
-        my_mlx_pixel_put(data, 2*i, i, 0xFFF2CC);
-        i++;
-    }
+	i = 20;
+	while (i < 150)
+	{
+		my_mlx_pixel_put(data, 2 * i, i, 0xFFF2CC);
+		i++;
+	}
 }
 
-int	blabla(void)
+void	graphics_init(t_map *map)
 {
-    void	*mlx;
-    void	*mlx_win;
-    t_data	img;
+	void	*mlx;
+	void	*mlx_win;
+	t_data	img;
 
-    mlx = mlx_init();
-    mlx_win = mlx_new_window(mlx, 1280, 720, "Hello world!");
-    img.img = mlx_new_image(mlx, 1280, 720);
-    img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-                                 &img.endian);
-    create_line(&img);
-    mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-    mlx_loop(mlx);
-	return 0;
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, SIZE_X, SIZE_Y, "FDF");
+	img.img = mlx_new_image(mlx, SIZE_X, SIZE_Y);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
+	&img.line_length,&img.endian);
+	create_line(&img);
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_loop(mlx);
 }
