@@ -15,6 +15,7 @@
 # include <stdlib.h>
 
 char	**ft_split(char const *s, char c);
+void	ft_free_split(void *splitted_element);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));

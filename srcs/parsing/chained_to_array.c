@@ -32,7 +32,7 @@ int	*create_array_line(int i, t_list *list)
 		int_line[current_position] = ft_atoi(current_line[current_position]);
 		current_position++;
 	}
-	free(current_line);
+	ft_free_split(current_line);
 	return (int_line);
 }
 

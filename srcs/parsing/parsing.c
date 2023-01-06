@@ -35,13 +35,13 @@ void    ft_print_map(t_map map)
 t_map	parsing_full(const char *file)
 {
 	int		fd;
-	t_list	*s_linked_text;
+	t_list	*linked_text;
 	t_map	map;
 
 	fd = open(file, O_RDONLY);
-	s_linked_text = put_file_in_list(fd);
+	linked_text = put_file_in_list(fd);
 	close(fd);
-	linked_to_array(*s_linked_text, &map);
-	ft_lstclear(&s_linked_text, free);
+	linked_to_array(*linked_text, &map);
+	ft_lstclear(&linked_text, free);
 	return (map);
 }

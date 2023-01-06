@@ -14,3 +14,4 @@ libft.a
 amain.c
 .objs/
 *.a
+.idea
