@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "graphics.h"
+#include "../../includes/fdf.h"
+#include "../../includes/graphics.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -39,6 +39,7 @@ void	graphics_init(t_map *map)
 	void	*mlx_win;
 	t_data	img;
 
+	(void )map;
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, SIZE_X, SIZE_Y, "FDF");
 	img.img = mlx_new_image(mlx, SIZE_X, SIZE_Y);

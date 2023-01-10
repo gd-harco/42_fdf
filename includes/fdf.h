@@ -12,18 +12,30 @@
 
 #ifndef FDF_H
 # define FDF_H
-# include "../lib/libft/includes/libft.h"
+# include "libft.h"
 
 typedef struct s_map
 {
-	size_t 	width;
-	size_t 	height;
-	int	**content;
+	size_t	width;
+	size_t	height;
+	int		**content;
 }	t_map;
 
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
+typedef struct s_vec3d {
+	float	x;
+	float	y;
+	float	z;
+}				t_vec3d;
 
 t_list	*put_file_in_list(int fd);
 void	linked_to_array(t_list list, t_map *map);
 t_map	parsing_full(const char *file);
-void	graphics_init(t_map *map);
 #endif

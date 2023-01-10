@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../../includes/fdf.h"
 
 t_list	*put_file_in_list(int fd)
 {

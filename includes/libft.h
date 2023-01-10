@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 15:59:38 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/04 15:49:50 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2022/12/07 18:19:4 by gd-harco          #+#    #+#             */
+/*   Updated: 2022/12/07 22:48:45 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
-#include "../includes/graphics.h"
+#ifndef LIBFT_H
+# define LIBFT_H
 
-int	main(int argc, char const *argv[])
-{
-	t_map	map;
+# include "sublibft/char.h"
+# include "sublibft/io.h"
+# include "sublibft/list.h"
+# include "sublibft/memory.h"
+# include "sublibft/str.h"
+# include "sublibft/numbers.h"
+# include "sublibft/get_next_line.h"
+# include "sublibft/array.h"
 
-	if (argc != 2)
-	{
-		ft_printf("No map provided\n");
-		return (0);
-	}
-	map = parsing_full(argv[1]);
-
-	graphics_init(&map);
-	ft_free_array((void *)map.content);
-	return (0);
-}
+#endif

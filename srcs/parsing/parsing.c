@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../../includes/fdf.h"
 #include <fcntl.h>
 
 void	ft_print_map(t_map map)
@@ -38,7 +38,13 @@ t_map	parsing_full(const char *file)
 	t_list	*linked_text;
 	t_map	map;
 
+
 	fd = open(file, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_printf("Error: file not found\n");
+		exit(0);
+	}
 	linked_text = put_file_in_list(fd);
 	close(fd);
 	linked_to_array(*linked_text, &map);

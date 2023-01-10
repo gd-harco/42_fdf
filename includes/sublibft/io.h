@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   io.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 15:59:38 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/04 15:49:50 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2022/12/05 10:21:19 by gd-harco          #+#    #+#             */
+/*   Updated: 2022/12/07 22:25:17 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
-#include "../includes/graphics.h"
+#ifndef IO_H
+# define IO_H
+# include <stdlib.h>
+# include <stdarg.h>
+# include <unistd.h>
 
-int	main(int argc, char const *argv[])
-{
-	t_map	map;
+int		ft_printf(const char *txt, ...);
+size_t	ft_putchar_fd(char c, int fd);
+size_t	ft_putendl_fd(char *s, int fd);
+size_t	ft_putnbr_fd(int n, int fd, size_t size);
+size_t	ft_putstr_fd(char *s, int fd);
 
-	if (argc != 2)
-	{
-		ft_printf("No map provided\n");
-		return (0);
-	}
-	map = parsing_full(argv[1]);
-
-	graphics_init(&map);
-	ft_free_array((void *)map.content);
-	return (0);
-}
+#endif

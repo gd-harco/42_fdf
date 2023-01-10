@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../../includes/fdf.h"
 
 int	*create_array_line(int i, t_list *list)
 {

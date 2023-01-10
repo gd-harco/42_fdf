@@ -11,12 +11,7 @@
 /* ************************************************************************** */
 #ifndef GRAPHICS_H
 # define GRAPHICS_H
-#if defined(__APPLE__)
-#  include "../lib/mlx/macos/mlx.h"
-# endif
-# if defined(__linux__)
-#  include <mlx.h>
-# endif
+# include "mlx.h"
 # ifndef SIZE_X
 #  define SIZE_X 1280
 # endif
@@ -25,13 +20,9 @@
 # endif
 # include <fcntl.h>
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
+void	graphics_test(void);
+typedef struct s_mat4x4{
+	float	m[4][4];
+}				t_mat4x4;
 
 #endif

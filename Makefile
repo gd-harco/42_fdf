@@ -28,14 +28,12 @@ DIR_SRCS		=	srcs/
 DIR_HEADERS		=	includes/
 
 # ---- Files ---- #
-
-HEADERS_LIST	=	fdf.h						\
-					graphics.h
-
-SRCS			=	main.c						\
-					parsing/chained_to_array.c	\
-					parsing/parsing.c			\
-					parsing/text_to_list.c		\
+SRCS			=	main.c							\
+					parsing/chained_to_array.c		\
+					parsing/parsing.c				\
+					parsing/text_to_list.c			\
+					graphics_renders/create_image.c	\
+					graphics_renders/3dpoint_test.c	\
 \
 					graphics_renders/create_image.c
 
@@ -46,6 +44,10 @@ LIBFT_DEBUG		=	libft_debug.a
 FLAGS_FRAMEWORK	=	-Llib/mlx/macos -Llib/libft -lmlx -lft
 
 MLX				=	libmlx.a
+
+HEADERS_LIST	=	fdf.h	\
+					libft.h	\
+					mlx.h
 
 UNAME = $(shell uname)
 
@@ -64,8 +66,6 @@ FLAGS_DEBUG		=	-Llib/libft -lft_debug + ${FLAGS_FRAMEWORK}
 endif
 
 MLX_DIR			=	lib/mlx/${OS}
-
-HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
 OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
 
@@ -96,11 +96,11 @@ debug:					${DIR_OBJS_DEBUG}
 # ---- Variables Rules ---- #
 
 
-${NAME}:				${LIBFT} ${OBJS} ${DIR_HEADERS} ${MLX}
+${NAME}:				${LIBFT} ${OBJS} ${MLX}
 						${CC} ${FLAGS} -I ${DIR_HEADERS} ${OBJS} ${FLAGS_FRAMEWORK} -o ${NAME}
 
 ${NAME_DEBUG}:			${LIBFT_DEBUG} ${OBJS_DEBUG} ${MLX}
-						${CC} ${FLAGS_DEBUG} -I ${DIR_HEADERS} ${OBJS_DEBUG} -Llib/libft -lft_debug -o ${NAME_DEBUG}
+						${CC} ${FLAGS_DEBUG} -I ${HEADERS_LIST} ${OBJS_DEBUG} -Llib/libft -lft_debug -o ${NAME_DEBUG}
 
 # ---- Compiled Rules ---- #
 
@@ -111,10 +111,10 @@ ${DIR_OBJS}:
 							| sh -s
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
-					${CC} ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
+					${CC} ${FLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
 ${DIR_OBJS}%_debug.o:	${DIR_SRCS}%.c ${DIR_HEADERS}
-						${CC} ${FLAGS} -g -fsanitize=address -I ${DIR_HEADERS} -c $< -o $@
+						${CC} ${FLAGS} -g -fsanitize=address ${HEADERS_LIST} -c $< -o $@
 
 ${LIBFT}:
 						make -C lib/libft/
