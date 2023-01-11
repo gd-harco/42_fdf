@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fdf.h"
 #include "../../includes/graphics.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -35,17 +34,18 @@ void	create_line(t_data *data)
 
 void	graphics_init(t_map *map)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
+//	void				*mlx;
+//	void				*mlx_win;
+//	t_data				img;
+	t_projection_info	proj;
+	t_mat			matrix;
 
 	(void )map;
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, SIZE_X, SIZE_Y, "FDF");
-	img.img = mlx_new_image(mlx, SIZE_X, SIZE_Y);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
-	&img.line_length,&img.endian);
-	create_line(&img);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+//	mlx = mlx_init();
+//	mlx_win = mlx_new_window(mlx, SIZE_X, SIZE_Y, "FDF");
+//	img.img = mlx_new_image(mlx, SIZE_X, SIZE_Y);
+//	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	fill_info_struct(&proj);
+	fill_mat_struct(&matrix, &proj);
+//	mlx_loop(mlx);
 }

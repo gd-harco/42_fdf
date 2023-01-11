@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/11 14:57:53 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/05 14:39:46 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2023/01/11 15:47:00 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/01/11 15:47:00 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-# include "libft.h"
+#include "../../includes/drawing.h"
 
-typedef struct s_map
+//We draw lines from left to right.
+//x1 < x2 and y1< y2
+//		Slope of the line is between 0 and 1. We draw a line from lower left to upper right.
+
+//Bresenham's line algorithm
+void	draw_line(t_data *data, t_vec2d p1, t_vec2d p2)
 {
-	size_t	width;
-	size_t	height;
-	int		**content;
-}	t_map;
+	float	x_start;
+	float	y_start;
+	float	x_end;
+	float	y_end;
+	float	m;
 
-typedef struct s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
+	m = (y_end - y_start) / (x_end - x_start);
 
-t_list	*put_file_in_list(int fd);
-void	linked_to_array(t_list list, t_map *map);
-t_map	parsing_full(const char *file);
-#endif
+}

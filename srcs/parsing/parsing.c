@@ -38,7 +38,6 @@ t_map	parsing_full(const char *file)
 	t_list	*linked_text;
 	t_map	map;
 
-
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{

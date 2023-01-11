@@ -89,7 +89,8 @@ HEADERS 		=	${INCLUDES}char.h				\
 					${INCLUDES}numbers.h			\
 					${INCLUDES}str.h				\
 					${INCLUDES}get_next_line.h		\
-					${INCLUDES}array.h
+					${INCLUDES}array.h				\
+					${INCLUDES}drawing.h
 
 OBJS			=	${addprefix ${DIR_OBJS},${SRCS:.c=.o}}
 
@@ -101,8 +102,7 @@ CC				= cc
 
 FLAGS 			= -Wall -Wextra -Werror
 
-DEBUG_FLAGS		=-g3 -fsanitize=address
-
+DEBUG_FLAGS		=-g3
 
 # ---- Commands ---- #
 RMF				=	rm -rf

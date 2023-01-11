@@ -12,13 +12,3 @@
 
 #include "../../includes/graphics.h"
 #include "../../includes/fdf.h"
-
-void	graphics_test(void)
-{
-	void	*mlx;
-	void	*window;
-
-	mlx = mlx_init();
-	window = mlx_new_window(mlx, SIZE_X, SIZE_Y, "3D Point Test");
-	mlx_loop(mlx);
-}
