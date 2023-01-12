@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
+#include "../../includes/list.h"
 
 void	ft_lstclear(t_list **lst, void (*f)(void*))
 {

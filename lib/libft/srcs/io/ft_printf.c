@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "io.h"
-#include "str.h"
+#include "../../includes/io.h"
+#include "../../includes/str.h"
 
 ssize_t	ft_base_fd(size_t nbr, char *base, int fd)
 {

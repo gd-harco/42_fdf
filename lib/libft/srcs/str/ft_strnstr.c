@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "str.h"
+#include "../../includes/str.h"
 
 // Localise un string dans un autre,
 // renvoie un pointeur vers le premier caractere du string localise, ou NULL

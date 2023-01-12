@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "str.h"
+#include "../../includes/str.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {

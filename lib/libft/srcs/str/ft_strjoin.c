@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "str.h"
+#include "../../includes/str.h"
 
 static char	*joning(char *result, char *s2, char *s1)
 {

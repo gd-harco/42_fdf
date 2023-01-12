@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "memory.h"
+#include "../../includes/memory.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {

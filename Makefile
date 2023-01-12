@@ -91,18 +91,10 @@ MKDIR			=	mkdir -p
 
 all:					${DIR_OBJS}
 						@${MAKE} ${NAME}
-
-debug:					${DIR_OBJS_DEBUG}
-						@${MAKE} ${NAME_DEBUG}
-
 # ---- Variables Rules ---- #
-
 
 ${NAME}:				${LIBFT} ${OBJS} ${MLX}
 						${CC} ${FLAGS} -I ${DIR_HEADERS} ${OBJS} ${FLAGS_FRAMEWORK} -o ${NAME}
-
-${NAME_DEBUG}:			${LIBFT_DEBUG} ${OBJS_DEBUG} ${MLX}
-						${CC} ${FLAGS_DEBUG} -I ${DIR_HEADERS} ${OBJS_DEBUG} -Llib/libft -lft_debug -o ${NAME_DEBUG}
 
 # ---- Compiled Rules ---- #
 
@@ -112,11 +104,8 @@ ${DIR_OBJS}:
 							| sed 's/^/${MKDIR} /'\
 							| sh -s
 
-${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
+${DIR_OBJS}%.o	:	${DIR_SRCS}%.c $(addprefix ${DIR_HEADERS},${HEADERS_LIST})
 					${CC} ${FLAGS} -I ${DIR_HEADERS} -c $< -o $@
-
-${DIR_OBJS}%_debug.o:	${DIR_SRCS}%.c ${DIR_HEADERS}
-						${CC} ${FLAGS} -g3 -I ${DIR_HEADERS} -c $< -o $@
 
 ${LIBFT}:
 						make -C lib/libft/

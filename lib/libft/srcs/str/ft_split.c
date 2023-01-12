@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "str.h"
+#include "../../includes/str.h"
 
 static char	**free_all(char **dest, size_t i)
 {

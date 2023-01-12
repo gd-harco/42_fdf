@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "str.h"
+#include "../../includes/str.h"
 
 char	*ft_strchr(const char *s, int c)
 {

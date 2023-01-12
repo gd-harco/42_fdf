@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../../includes/get_next_line.h"
 
 char	*final_read(char buf[BUFFER_SIZE + 1], int reading, char *str)
 {

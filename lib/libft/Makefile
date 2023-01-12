@@ -13,19 +13,19 @@
 # ******** VARIABLES ******** #
 
 # ---- Final Executable --- #
-NAME			=	libft.a
+NAME				=	libft.a
 
-NAME_DEBUG		=	libft_debug.a
+NAME_DEBUG			=	libft_debug.a
 
 # ---- Directories ---- #
-INCLUDES		=	includes/
+INCLUDES			=	includes/
 
-DIR_OBJS		=	./.objs/
+DIR_OBJS			=	objs/
 
-SRCS			=	${addprefix srcs/, ${C_FILES}}
+DIR_SRCS			=	srcs/
 
 # ---- FILES ---- #
-C_FILES 		=	char/ft_isalnum.c	\
+SRCS 			=	char/ft_isalnum.c	\
 					char/ft_isalpha.c	\
 					char/ft_isascii.c	\
 					char/ft_isdigit.c	\
@@ -89,12 +89,11 @@ HEADERS 		=	${INCLUDES}char.h				\
 					${INCLUDES}numbers.h			\
 					${INCLUDES}str.h				\
 					${INCLUDES}get_next_line.h		\
-					${INCLUDES}array.h				\
-					${INCLUDES}drawing.h
+					${INCLUDES}array.h
 
-OBJS			=	${addprefix ${DIR_OBJS},${SRCS:.c=.o}}
+OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
 
-OBJS_DEBUG		=	${addprefix ${DIR_OBJS},${SRCS:.c=_debug.o}}
+OBJS_DEBUG		=	${SRCS:%.c=${DIR_OBJS}%_debug.o}
 
 # ---- Compilation ---- #
 
@@ -102,7 +101,7 @@ CC				= cc
 
 FLAGS 			= -Wall -Wextra -Werror
 
-DEBUG_FLAGS		=-g3
+DEBUG_FLAGS		= -g3
 
 # ---- Commands ---- #
 RMF				=	rm -rf
@@ -111,15 +110,14 @@ MKDIR			= 	mkdir -p
 
 # ********* RULES ******** #
 
-all:			${DIR_OBJS}
-				@${MAKE} ${NAME}
+all		: ${NAME}
 
 debug:			${DIR_OBJS}
 				@${MAKE} ${NAME_DEBUG} FLAGS="${FLAGS} ${DEBUG_FLAGS}"
 
 # ---- Variables Rules ---- #
 
-$(NAME):		${OBJS}
+${NAME}:		${DIR_OBJS} ${OBJS} ${HEADERS}
 				ar rcs ${NAME} ${OBJS}
 
 ${NAME_DEBUG}: ${OBJS_DEBUG}
@@ -127,21 +125,18 @@ ${NAME_DEBUG}: ${OBJS_DEBUG}
 
 # ---- Compiled Rules ---- #
 
+${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
+					${CC} ${CFLAGS} -I ${DIR_HEADERS}. -c $< -o $@
+
 ${DIR_OBJS}:
-			@echo ${OBJS} | tr ' ' '\n'\
+			echo ${OBJS} | tr ' ' '\n'\
 				| sed 's|\(.*\)/.*|\1|'\
 				| sed 's/^/${MKDIR} /'\
 				| sh -s
-			@# Prints all OBJS. 1 per line
-				@# Removes the .o file names
-				@# Adds mkdir -p at start of each lines
-				@# Executes the script (Creates all folders)
-
-${DIR_OBJS}%.o: %.c ${HEADERS}
-				cc ${FLAGS} -I ${INCLUDES} -c $< -o $@
+			@echo "\033[0;32m [libft] ✔️ Successfully created binaries directories \033[1;36m${DIR_OBJS} !"
 
 ${DIR_OBJS}%_debug.o: %.c ${HEADERS}
-				cc ${FLAGS} -I ${INCLUDES} -c $< -o $@
+				cc ${FLAGS} -I ${INCLUDES} -c $< -o $@å
 
 # ---- Usual Rules ---- #
 

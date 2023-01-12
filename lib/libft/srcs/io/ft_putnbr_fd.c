@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "io.h"
+#include "../../includes/io.h"
 #include <unistd.h>
 
 size_t	ft_putnbr_fd(int n, int fd, size_t size)

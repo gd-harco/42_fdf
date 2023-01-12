@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "io.h"
+#include "../../includes/io.h"
 #include <unistd.h>
 
 size_t	ft_putchar_fd(char c, int fd)

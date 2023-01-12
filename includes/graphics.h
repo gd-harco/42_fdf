@@ -9,15 +9,12 @@
 /*   Updated: 2023/01/06 16:23:00 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef GRAPHICS_H
 # define GRAPHICS_H
 # include "mlx.h"
-# ifndef SIZE_X
-#  define SIZE_X 1280
-# endif
-# ifndef SIZE_Y
-#  define SIZE_Y 720
-# endif
+# define SIZE_X 1920
+# define SIZE_Y 1080
 # include <fcntl.h>
 # ifndef FDF_H
 #  include "../includes/fdf.h"
@@ -41,11 +38,6 @@ typedef struct s_vec3d {
 	float	y;
 	float	z;
 }				t_vec3d;
-
-typedef struct s_vec2d {
-	float 	x;
-	float 	y;
-}				t_vec2d;
 
 void	graphics_init(t_map *map);
 void	graphics_test(void);
