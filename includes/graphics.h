@@ -39,6 +39,12 @@ typedef struct s_vec3d {
 	float	z;
 }				t_vec3d;
 
+typedef struct s_line {
+	t_vec3d	l_start;
+	t_vec3d	l_end;
+	float 	slope;
+}				t_line;
+
 void	graphics_init(t_map *map);
 void	graphics_test(void);
 void	fill_info_struct(t_projection_info *proj);

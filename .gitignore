@@ -7,3 +7,4 @@ libft.a
 *.a
 objs
 *.log
+.idea

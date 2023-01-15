@@ -15,20 +15,35 @@
 
 # ---- Final Executable --- #
 
-NAME			=	fdf.out
+NAME			=	fdf
 
-NAME_DEBUG		=	fdf_debug.out
+NAME_DEBUG		=	fdf_debug
 
 # ---- Directories ---- #
 
-DIR_OBJS		=	objs/
+DIR_OBJS		=	bin/
 
 DIR_SRCS		=	srcs/
 
 DIR_HEADERS		=	includes/
 
+# ---- Libs variables ---- #
+
+LIBFT			=	libft.a
+
+LIBFT_DEBUG		=	libft_debug.a
+
+MLX				=	libmlx.a
+
 # ---- Files ---- #
-SRCS			=	main.c								\
+
+HEADERS_LIST	=	fdf.h		\
+					libft.h		\
+					mlx.h		\
+					drawing.h	\
+					graphics.h
+
+SRCS_LIST		=	main.c								\
 					parsing/chained_to_array.c			\
 					parsing/parsing.c					\
 					parsing/text_to_list.c				\
@@ -37,49 +52,34 @@ SRCS			=	main.c								\
 					graphics_renders/fill_info_struct.c	\
 					graphics_renders/drawing.c			\
 
-LIBFT			=	libft.a
+HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
-LIBFT_DEBUG		=	libft_debug.a
+OBJS			=	${SRCS_LIST:%.c=${DIR_OBJS}%.o}
 
-FLAGS_FRAMEWORK	=	-Llib/mlx/macos -Llib/libft -lmlx -lft
 
-MLX				=	libmlx.a
-
-HEADERS_LIST	=	fdf.h		\
-					libft.h		\
-					mlx.h		\
-					drawing.h	\
-					graphics.h
+# ---- Compilation ---- #
 
 UNAME = $(shell uname)
+
+CC				=	cc
+
+CFLAGS			=	-Wall -Wextra -Werror
+
+CFLAGS_DEBUG		=	-g3
+
+FRAMEWORKS		=	-Llib/libft -lft
 
 # ---- Compil MacOS ---- #
 ifeq (${UNAME}, Darwin)
 OS				=	macos
-FLAGS_FRAMEWORK	+=	-framework OpenGL -framework AppKit
-FLAGS_DEBUG		=	-Llib/libft -lft_debug +${FLAGS_FRAMEWORK}
+FRAMEWORKS		=	-Llib/mlx/${OS} -lmlx -framework OpenGL -framework AppKit
 endif
 
 # ---- Compil Linux ---- #
 ifeq (${UNAME}, Linux)
 OS				=	linux
-FLAGS_FRAMEWORK	+=	-lXext -lX11 -lm -lz
-FLAGS_DEBUG		=	-Llib/libft -lft_debug + ${FLAGS_FRAMEWORK}
+FRAMEWORKS		+=	 -lmlx -lXext -lX11 -lm -lz
 endif
-
-MLX_DIR			=	lib/mlx/${OS}
-
-OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
-
-OBJS_DEBUG		=	${addprefix ${DIR_OBJS},${SRCS:.c=_debug.o}}
-
-# ---- Compilation ---- #
-
-CC				=	cc
-
-FLAGS			=	-Wall -Wextra -Werror
-
-FLAGS_DEBUG		=	-g3
 
 # ---- Commands ---- #
 
@@ -89,47 +89,41 @@ MKDIR			=	mkdir -p
 
 # ********* RULES ******** #
 
-all:					${DIR_OBJS}
-						@${MAKE} ${NAME}
+all				:	${NAME}
+
 # ---- Variables Rules ---- #
 
-${NAME}:				${LIBFT} ${OBJS} ${MLX}
-						${CC} ${FLAGS} -I ${DIR_HEADERS} ${OBJS} ${FLAGS_FRAMEWORK} -o ${NAME}
+${NAME}			:	${OBJS} ${HEADERS} ${LIBFT}
+						${CC} ${CFLAGS} -I ${DIR_HEADERS} ${OBJS} ${FRAMEWORKS} -o ${NAME}
+
+# ---- Lib rules ---- #
+
+${LIBFT}		:
+					make -C lib/libft
 
 # ---- Compiled Rules ---- #
 
-${DIR_OBJS}:
-						@echo ${OBJS} | tr ' ' '\n'\
-							| sed 's|\(.*\)/.*|\1|'\
-							| sed 's/^/${MKDIR} /'\
-							| sh -s
+${OBJS}			:	| ${DIR_OBJS}
 
-${DIR_OBJS}%.o	:	${DIR_SRCS}%.c $(addprefix ${DIR_HEADERS},${HEADERS_LIST})
-					${CC} ${FLAGS} -I ${DIR_HEADERS} -c $< -o $@
+${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
+					${CC} ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
-${LIBFT}:
-						make -C lib/libft/
-
-${LIBFT_DEBUG}:
-						make -C lib/libft/ debug
-
-${MLX}:
-						make -C ${MLX_DIR}
-
-${OBJS}:				| ${DIR_OBJS}
-
+${DIR_OBJS}		:
+					${MKDIR} ${DIR_OBJS}
+					${MKDIR} ${DIR_OBJS}parsing
+					${MKDIR} ${DIR_OBJS}graphics_renders
+					@echo "\033[0;32m [${NAME}/bin] : ✔️ Successfully created bin directory\033[1;36m ${DIR_OBJS} !\033[0;00m"
 
 # ---- Usual Rules ---- #
 
-clean:
-					make -C lib/libft/ clean
-					make -C lib/mlx/${OS} clean
-					${RM} ${OBJS} ${OBJS_DEBUG} ${LIBFT} ${LIBFT_DEBUG} ${MLX}
+clean			:
+					${RM} ${OBJS}
+					@echo "\033[0;31m [${NAME}/bin] : ✔️ Successfully cleaned bin directories\033[1;36m bin/ !\033[0;00m"
 
 fclean:				clean
+					${RM} ${NAME}
 					make -C lib/libft/ fclean
 					make -C lib/mlx/${OS} fclean
-					${RM} ${NAME} ${NAME_DEBUG}
 
 re:					fclean all
 

@@ -13,21 +13,21 @@
 #include "../../includes/drawing.h"
 
 
-void draw_line(t_data *data, t_vec3d p1, t_vec3d p2)
+void draw_line(t_data *data, t_line to_draw)
 {
 	float	e;
 	float	m;
 	t_vec3d current_pos;
 
-	m = fabsf((p2.y - p1.y)) / fabsf((p2.x - p1.x));
+	m = to_draw.slope;
 	e = 0;
 
-	current_pos.x = p1.l_start.x;
-	current_pos.y = p1.l_start.y;
-	while (current_pos.x < p1.l_end.x)
+	current_pos.x = to_draw.l_start.x;
+	current_pos.y = to_draw.l_start.y;
+	while (current_pos.x < to_draw.l_end.x)
 	{
 		my_mlx_pixel_put(data, current_pos.x, current_pos.y, 0x00FFFFFF);
-		e -= p1.slope;
+		e -= m;
 		if (e < 0.5)
 		{
 			current_pos.y--;
