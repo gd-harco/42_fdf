@@ -14,7 +14,7 @@
 # define GRAPHICS_H
 # include "mlx.h"
 # define SIZE_X 1920
-# define SIZE_Y 1080
+# define SIZE_Y 1
 # include <fcntl.h>
 # ifndef FDF_H
 #  include "../includes/fdf.h"

@@ -72,7 +72,7 @@ FRAMEWORKS		=	-Llib/libft -lft
 # ---- Compil MacOS ---- #
 ifeq (${UNAME}, Darwin)
 OS				=	macos
-FRAMEWORKS		=	-Llib/mlx/${OS} -lmlx -framework OpenGL -framework AppKit
+FRAMEWORKS		+=	-Llib/mlx/${OS} -lmlx -framework OpenGL -framework AppKit
 endif
 
 # ---- Compil Linux ---- #
@@ -93,13 +93,16 @@ all				:	${NAME}
 
 # ---- Variables Rules ---- #
 
-${NAME}			:	${OBJS} ${HEADERS} ${LIBFT}
+${NAME}			:	${OBJS} ${HEADERS} ${LIBFT} ${MLX}
 						${CC} ${CFLAGS} -I ${DIR_HEADERS} ${OBJS} ${FRAMEWORKS} -o ${NAME}
 
 # ---- Lib rules ---- #
 
 ${LIBFT}		:
 					make -C lib/libft
+
+${MLX}			:
+					make -C lib/mlx/${OS}
 
 # ---- Compiled Rules ---- #
 
@@ -122,8 +125,8 @@ clean			:
 
 fclean:				clean
 					${RM} ${NAME}
-					make -C lib/libft/ fclean
-					make -C lib/mlx/${OS} fclean
+					make -C lib/libft/ clean
+					make -C lib/mlx/${OS} clean
 
 re:					fclean all
 

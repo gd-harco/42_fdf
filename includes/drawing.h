@@ -20,7 +20,10 @@
 # endif
 
 void	my_mlx_pixel_put(t_data *data, float x, float y, int color);
+void draw_line_upward(t_data *data, t_line to_draw);
+void draw_line_downward(t_data *data, t_line to_draw);
 void draw_line(t_data *data, t_line to_draw);
+
 
 
 #endif

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <printf.h>
 #include "../../includes/graphics.h"
 #include ".././includes/drawing.h"
 
