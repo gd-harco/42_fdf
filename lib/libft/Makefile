@@ -15,8 +15,6 @@
 # ---- Final Executable --- #
 NAME				=	libft.a
 
-NAME_DEBUG			=	libft_debug.a
-
 # ---- Directories ---- #
 INCLUDES			=	includes/
 
@@ -99,7 +97,7 @@ OBJS_DEBUG		=	${SRCS:%.c=${DIR_OBJS}%_debug.o}
 
 CC				= cc
 
-FLAGS 			= -Wall -Wextra -Werror
+FLAGS 			= -Wall -Wextra -Werror -g3
 
 DEBUG_FLAGS		= -g3
 
@@ -120,23 +118,23 @@ debug:			${DIR_OBJS}
 ${NAME}:		${DIR_OBJS} ${OBJS} ${HEADERS}
 				ar rcs ${NAME} ${OBJS}
 
-${NAME_DEBUG}: ${OBJS_DEBUG}
+${NAME_DEBUG}:	${DIR_OBJS} ${OBJS_DEBUG} ${HEADERS}
 				ar rcs ${NAME_DEBUG} ${OBJS_DEBUG}
 
 # ---- Compiled Rules ---- #
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
-					${CC} ${CFLAGS} -I ${DIR_HEADERS}. -c $< -o $@
+					${CC} ${FLAGS} -I ${DIR_HEADERS}. -c $< -o $@
+
+${DIR_OBJS}%_debug.o: %.c ${HEADERS}
+					${CC} ${FLAGS} -I ${INCLUDES} -c $< -o $@
 
 ${DIR_OBJS}:
-			echo ${OBJS} | tr ' ' '\n'\
+			@echo ${OBJS} | tr ' ' '\n'\
 				| sed 's|\(.*\)/.*|\1|'\
 				| sed 's/^/${MKDIR} /'\
 				| sh -s
 			@echo "\033[0;32m [libft] ✔️ Successfully created binaries directories \033[1;36m${DIR_OBJS} !"
-
-${DIR_OBJS}%_debug.o: %.c ${HEADERS}
-				cc ${FLAGS} -I ${INCLUDES} -c $< -o $@å
 
 # ---- Usual Rules ---- #
 
