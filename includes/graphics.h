@@ -13,15 +13,16 @@
 #ifndef GRAPHICS_H
 # define GRAPHICS_H
 # include "mlx.h"
-# define SIZE_X 1920
-# define SIZE_Y 1
+# define SIZE_X 1280
+# define SIZE_Y 720
 # include <fcntl.h>
 # ifndef FDF_H
 #  include "../includes/fdf.h"
 # endif
 # include <math.h>
 
-typedef struct s_projection_info{
+typedef struct s_projection_info
+{
 	float	f_near;
 	float	f_far;
 	float	f_fov;
@@ -29,25 +30,36 @@ typedef struct s_projection_info{
 	float	f_fov_rad;
 }	t_projection_info;
 
-typedef struct s_mat{
+typedef struct s_mat
+{
 	float	m[4][4];
 }				t_mat;
 
-typedef struct s_vec3d {
+typedef struct s_vec3d
+{
 	float	x;
 	float	y;
 	float	z;
 }				t_vec3d;
 
-typedef struct s_line {
+typedef struct s_line
+{
 	t_vec3d	l_start;
 	t_vec3d	l_end;
 	float 	slope;
 }				t_line;
 
+typedef struct s_map
+{
+	size_t	width;
+	size_t	height;
+	t_vec3d	**content;
+	t_vec3d	**content_display;
+}	t_map;
+
 void	graphics_init(t_map *map);
 void	graphics_test(void);
-void	fill_info_struct(t_projection_info *proj);
+void	fill_projection_struct(t_projection_info *projection);
 void	fill_mat_struct(t_mat	*mat, t_projection_info *projection);
-
+t_vec3d	multiply_vec_mat(t_vec3d *input_vec, t_mat *mat);
 #endif

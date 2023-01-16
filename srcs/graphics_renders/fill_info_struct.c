@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_info_struct.c                                 :+:      :+:    :+:   */
+/*   fill_projection_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -34,13 +34,13 @@ void	print_mat(t_mat *mat)
 }
 
 //fill the projection_info matrix
-void	fill_info_struct(t_projection_info *proj)
+void	fill_projection_struct(t_projection_info *projection)
 {
-	proj->f_near = 0.1;
-	proj->f_far = 1000.0 ;
-	proj->f_fov = 90.0;
-	proj->f_aspect = (float)SIZE_X / (float)SIZE_Y;
-	proj->f_fov_rad = 1.0 / tanf(proj->f_fov * 0.5 / 180.0 * 3.14159);
+	projection->f_near = 0.1f;
+	projection->f_far = 1000.0f;
+	projection->f_fov = 90.0f;
+	projection->f_aspect = (float)SIZE_X / (float)SIZE_Y;
+	projection->f_fov_rad = 1.0f / tanf(projection->f_fov * 0.5f / 180.0f * 3.14159f);
 }
 
 //fill the mat matrix with 0, then add the required data at the right place using the projection_info matrix
@@ -57,16 +57,12 @@ void	fill_mat_struct(t_mat	*mat, t_projection_info *projection)
 			mat->m[y][x++] = 0;
 		y++;
 	}
-	//TODO remove print_mat usage
-	print_mat(mat);
 	mat->m[0][0] = projection->f_aspect * projection->f_fov_rad;
 	mat->m[1][1] = projection->f_fov_rad;
 	mat->m[2][2] = projection->f_far/(projection->f_far - projection->f_near);
 	mat->m[3][2] = (-projection->f_far * projection->f_near) / (projection->f_far - projection->f_near);
-	mat->m[2][3] = 1.0;
-	mat->m[3][3] = 0.0;
-	printf("\n\n");
-	print_mat(mat);
+	mat->m[2][3] = 1.0f;
+	mat->m[3][3] = 0.0f;
 }
 
 //multiply the 3d point vector by the mat matrix

@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing.h                                          :+:      :+:    :+:   */
+/*   map_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 15:47:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/11 15:47:00 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2023/01/16 15:03:00 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/01/16 15:03:00 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAWING_H
-# define DRAWING_H
-# ifndef FDF_H
-#  include "../includes/fdf.h"
-# endif
-# ifndef GRAPHICS_H
-#  include "../includes/graphics.h"
-# endif
+#include "../../includes/line_drawing.h"
 
-void	my_mlx_pixel_put(t_data *data, float x, float y, int color);
-void draw_line_upward(t_data *data, t_line to_draw);
-void draw_line_downward(t_data *data, t_line to_draw);
-void draw_line(t_data *data, t_line to_draw);
+void draw_all_line(t_map *map, t_data *data)
+{
+	size_t	y;
+	size_t	x;
 
-
-
-#endif
+	y = -1;
+	while (++y < map->height)
+	{
+		x = -1;
+		while (++x < map->width)
+		{
+			draw_line(data, map->content_display[y][x], map->content_display[y][x + 1]);
+			draw_line(data, map->content_display[y][x], map->content_display[y + 1][x]);
+		}
+	}
+}

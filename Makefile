@@ -48,9 +48,10 @@ SRCS_LIST		=	main.c								\
 					parsing/parsing.c					\
 					parsing/text_to_list.c				\
 					graphics_renders/create_image.c		\
-					graphics_renders/3dpoint_test.c		\
 					graphics_renders/fill_info_struct.c	\
-					graphics_renders/drawing.c			\
+					graphics_renders/line_drawing.c		\
+					graphics_renders/map_draw.c
+
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
@@ -93,7 +94,7 @@ all				:	${NAME}
 
 # ---- Variables Rules ---- #
 
-${NAME}			:	${OBJS} ${HEADERS} ${LIBFT} ${MLX}
+${NAME}			:	${OBJS} ${LIBFT} ${MLX}
 						${CC} ${CFLAGS} -I ${DIR_HEADERS} ${OBJS} ${FRAMEWORKS} -o ${NAME}
 
 # ---- Lib rules ---- #
@@ -108,7 +109,7 @@ ${MLX}			:
 
 ${OBJS}			:	| ${DIR_OBJS}
 
-${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
+${DIR_OBJS}%.o	:	${DIR_SRCS}%.c
 					${CC} ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
 ${DIR_OBJS}		:

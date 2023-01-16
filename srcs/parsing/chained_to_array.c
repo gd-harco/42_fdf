@@ -55,7 +55,7 @@ static size_t	get_nb_word(char const *s, char c)
 	return (nb_word);
 }
 
-void	linked_to_array(t_list list, t_map *map)
+void	linked_to_array(t_list list, t_int_map *map)
 {
 	int		**map_array;
 	size_t	i;
