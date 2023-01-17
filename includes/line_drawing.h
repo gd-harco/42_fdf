@@ -20,8 +20,8 @@
 # endif
 
 void	my_mlx_pixel_put(t_data *data, float x, float y, int color);
-void draw_line(t_data *data, t_vec3d p1, t_vec3d p2);
-t_line	get_line_start(t_vec3d p1, t_vec3d p2);
+void draw_line(t_data *data, t_3dpoint p1, t_3dpoint p2);
+t_line	get_line_start(t_3dpoint p1, t_3dpoint p2);
 void draw_all_line(t_map *map, t_data *data);
 
 #endif

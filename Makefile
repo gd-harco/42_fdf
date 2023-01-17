@@ -52,7 +52,6 @@ SRCS_LIST		=	main.c								\
 					graphics_renders/line_drawing.c		\
 					graphics_renders/map_draw.c
 
-
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
 OBJS			=	${SRCS_LIST:%.c=${DIR_OBJS}%.o}

@@ -22,7 +22,6 @@ int	main(int argc, char const *argv[])
 		return (0);
 	}
 	map = parsing_full(argv[1]);
-	ft_printf("Map parsed\n");
 	graphics_init(&map);
 	return (0);
 }

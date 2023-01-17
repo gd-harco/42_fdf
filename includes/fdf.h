@@ -18,6 +18,12 @@
 
 typedef struct s_map	t_map;
 
+typedef struct s_mlx_info
+{
+	void	*mlx;
+	void	*mlx_win;
+}			t_mlx_info;
+
 typedef struct s_int_map
 {
 	size_t	width;

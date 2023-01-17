@@ -60,24 +60,37 @@ t_map	get_t_map(t_int_map *int_map)
 	size_t	x;
 	size_t	y;
 
-	map.content = malloc(sizeof(t_vec3d *) * int_map->height);
-	map.content_display = malloc(sizeof(t_vec3d *) * int_map->height);
+	map.content = malloc(sizeof(t_3dpoint *) * int_map->height);
+	map.content_display = malloc(sizeof(t_3dpoint *) * int_map->height);
 	y = -1;
 	while (++y < int_map->height)
 	{
-		map.content[y] = malloc(sizeof(t_vec3d) * int_map->width);
-		map.content_display[y] = malloc(sizeof(t_vec3d) * int_map->width);
+		map.content[y] = malloc(sizeof(t_3dpoint) * int_map->width);
+		map.content_display[y] = malloc(sizeof(t_3dpoint) * int_map->width);
 		x = -1;
 		while (++x < int_map->width)
 		{
 			map.content[y][x].y = (float)y - (float)int_map->height / 2.0f;
 			map.content[y][x].x = (float)x - (float)int_map->width / 2.0f;
-			map.content[y][x].z = int_map->content[y][x];
+			map.content[y][x].z = (float)int_map->content[y][x];
 		}
 	}
 	map.height = int_map->height;
 	map.width = int_map->width;
 	return (map);
+}
+
+void	free_int_map(t_int_map int_map)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < int_map.height)
+	{
+		free(int_map.content[i]);
+		i++;
+	}
+	free(int_map.content);
 }
 
 t_map	parsing_full(const char *file)
@@ -96,10 +109,8 @@ t_map	parsing_full(const char *file)
 	linked_text = put_file_in_list(fd);
 	close(fd);
 	linked_to_array(*linked_text, &int_map);
-	ft_printf("printing the current map\n");
-	ft_print_int_map(int_map);
 	ft_lstclear(&linked_text, free);
 	map = get_t_map(&int_map);
-	ft_printf("map returned\n");
+	free_int_map(int_map);
 	return (map);
 }

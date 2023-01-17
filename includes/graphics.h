@@ -15,6 +15,7 @@
 # include "mlx.h"
 # define SIZE_X 1280
 # define SIZE_Y 720
+# define POS_Z 1
 # include <fcntl.h>
 # ifndef FDF_H
 #  include "../includes/fdf.h"
@@ -35,31 +36,30 @@ typedef struct s_mat
 	float	m[4][4];
 }				t_mat;
 
-typedef struct s_vec3d
+typedef struct s_3dpoint
 {
 	float	x;
 	float	y;
 	float	z;
-}				t_vec3d;
+}				t_3dpoint;
 
 typedef struct s_line
 {
-	t_vec3d	l_start;
-	t_vec3d	l_end;
-	float 	slope;
+	t_3dpoint	l_start;
+	t_3dpoint	l_end;
+	float		slope;
 }				t_line;
 
 typedef struct s_map
 {
-	size_t	width;
-	size_t	height;
-	t_vec3d	**content;
-	t_vec3d	**content_display;
+	size_t		width;
+	size_t		height;
+	t_3dpoint	**content;
+	t_3dpoint	**content_display;
 }	t_map;
 
-void	graphics_init(t_map *map);
-void	graphics_test(void);
-void	fill_projection_struct(t_projection_info *projection);
-void	fill_mat_struct(t_mat	*mat, t_projection_info *projection);
-t_vec3d	multiply_vec_mat(t_vec3d *input_vec, t_mat *mat);
+void		graphics_init(t_map *map);
+void		fill_projection_struct(t_projection_info *projection);
+void		fill_mat_struct(t_mat *mat, t_mat *trans_matrix, t_projection_info *projection);
+t_3dpoint	multiply_vec_mat(t_3dpoint *input_vec, t_mat *mat);
 #endif

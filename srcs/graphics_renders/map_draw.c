@@ -23,10 +23,12 @@ void draw_all_line(t_map *map, t_data *data)
 		x = -1;
 		while (++x < map->width)
 		{
+			ft_printf("attempting to print line %d - %d\n", y, x);
 			if (x + 1 < map->width)
 				draw_line(data, map->content_display[y][x], map->content_display[y][x + 1]);
 			if (y + 1 < map->height)
 				draw_line(data, map->content_display[y][x], map->content_display[y + 1][x]);
+			ft_printf("line %d - %d printed\n", y, x);
 		}
 	}
 }
