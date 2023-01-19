@@ -20,9 +20,9 @@ MLX              =   lib/mlx/libmlx.a
 
 # ---- Files ---- #
 
-HEADERS_LIST	=	fdf.h	parsing.h	structs.h
+HEADERS_LIST	=	fdf.h	parsing.h	structs.h	graphics.h
 
-SRCS_LIST		=	main.c	parsing/parsing_full.c	parsing/list_to_int_map.c parsing/int_to_vector.c
+SRCS_LIST		=	main.c	parsing/parsing_full.c	parsing/list_to_int_map.c parsing/int_to_vector.c graphics/graphics.c
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
