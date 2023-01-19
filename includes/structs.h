@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 13:30:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/19 13:30:00 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/20 00:13:30 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef struct t_vector3d	t_vector3d;
+typedef struct s_vector3d	t_vector3d;
 
 // Structs require for the parsing
 typedef struct s_int_map
@@ -65,6 +66,7 @@ typedef struct s_mlx_info
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	void	*img_ptr;
 }				t_mlx_info;
 
 #endif

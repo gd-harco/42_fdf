@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 13:04:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/19 13:04:00 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/20 00:09:10 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include "graphics.h"
 # ifdef __APPLE__
 #  include "../lib/mlx/mlx.h"
-# else
+# endif
+# ifdef __linux__
 #  include <mlx.h>
 # endif
 # ifndef HEIGHT

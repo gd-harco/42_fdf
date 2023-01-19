@@ -34,7 +34,7 @@ CC				=	cc
 
 CFLAGS			=	-Wall -Wextra -Werror -g3
 
-FRAMEWORKS		=	-Llib/libft -lft
+FRAMEWORKS		=	-Llib/libft -lft -lmlx
 
 # ---- OS Variables ---- #
 
@@ -60,7 +60,7 @@ all				:	${NAME}
 
 # ---- Variables Rules ---- #
 
-${NAME}			:	${OBJS} ${HEADERS} ${LIBFT} ${MLX}
+${NAME}			:	${OBJS} ${HEADERS} ${LIBFT}
 					${CC} ${CFLAGS} -I ${DIR_HEADERS} ${OBJS} ${FRAMEWORKS} -o ${NAME}
 #					@echo "\033[0;32m [${NAME}] : ✔️ Successfully built so_long executable\033[1;36m ${NAME}\033[0;32m for \033[1;36m${UNAME} !\033[0;00m"
 
@@ -84,6 +84,7 @@ ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
 ${DIR_OBJS}		:
 					${MKDIR} ${DIR_OBJS}
 					${MKDIR} ${DIR_OBJS}/parsing
+					${MKDIR} ${DIR_OBJS}/graphics
 #					@echo "\033[0;32m [${NAME}/bin] : ✔️ Successfully created bin directory\033[1;36m ${DIR_OBJS} !\033[0;00m"
 
 # ---- Usual Rules ---- #
