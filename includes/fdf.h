@@ -14,13 +14,22 @@
 # define FDF_H
 # include "libft.h"
 # include <math.h>
+# include "graphics.h"
 
-typedef struct s_map
+typedef struct s_map	t_map;
+
+typedef struct s_mlx_info
+{
+	void	*mlx;
+	void	*mlx_win;
+}			t_mlx_info;
+
+typedef struct s_int_map
 {
 	size_t	width;
 	size_t	height;
 	int		**content;
-}	t_map;
+}	t_int_map;
 
 typedef struct s_data {
 	void	*img;
@@ -31,6 +40,6 @@ typedef struct s_data {
 }				t_data;
 
 t_list	*put_file_in_list(int fd);
-void	linked_to_array(t_list list, t_map *map);
+void	linked_to_array(t_list list, t_int_map *map);
 t_map	parsing_full(const char *file);
 #endif

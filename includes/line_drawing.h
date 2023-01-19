@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAWING_H
-# define DRAWING_H
+#ifndef LINE_DRAWING_H
+# define LINE_DRAWING_H
 # ifndef FDF_H
 #  include "../includes/fdf.h"
 # endif
@@ -20,10 +20,8 @@
 # endif
 
 void	my_mlx_pixel_put(t_data *data, float x, float y, int color);
-void draw_line_upward(t_data *data, t_line to_draw);
-void draw_line_downward(t_data *data, t_line to_draw);
-void draw_line(t_data *data, t_line to_draw);
-
-
+void draw_line(t_data *data, t_3dpoint p1, t_3dpoint p2);
+t_line	get_line_start(t_3dpoint p1, t_3dpoint p2);
+void draw_all_line(t_map *map, t_data *data);
 
 #endif

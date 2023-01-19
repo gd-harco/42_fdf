@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-#include "../includes/graphics.h"
 
 int	main(int argc, char const *argv[])
 {
@@ -22,10 +21,8 @@ int	main(int argc, char const *argv[])
 		ft_printf("No map provided\n");
 		return (0);
 	}
-	ft_printf("%d, %d\n", SIZE_X, SIZE_Y);
 	map = parsing_full(argv[1]);
 	graphics_init(&map);
-	ft_free_array((void *)map.content);
 	return (0);
 }
 
