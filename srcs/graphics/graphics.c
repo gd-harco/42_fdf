@@ -12,11 +12,16 @@
 
 #include "fdf.h"
 
-void	graphic_launch(t_mlx_info mlx, t_vector_map vector_map)
+void graphic_launch(t_vector_map vector_map)
 {
-	mlx.mlx_ptr = mlx_init();
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, WIDTH, HEIGHT, "fdf");
-	mlx.img_ptr = mlx_new_image(mlx.mlx_ptr, WIDTH, HEIGHT);
+	t_mlx_info			mlx;
+	t_projection_info	projection_info;
+
+//	mlx.mlx_ptr = mlx_init();
+//	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, WIDTH, HEIGHT, "fdf");
+//	mlx.img_ptr = mlx_new_image(mlx.mlx_ptr, WIDTH, HEIGHT);
+	projection_info = fill_projection_info();
+	get_map_to_draw(&vector_map, &projection_info);
 	(void)vector_map;
 	mlx_loop(mlx.mlx_ptr);
 }

@@ -16,6 +16,7 @@
 # include "structs.h"
 # include "parsing.h"
 # include "graphics.h"
+# include <math.h>
 # ifdef __APPLE__
 #  include "../lib/mlx/mlx.h"
 # endif

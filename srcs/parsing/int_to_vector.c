@@ -14,21 +14,21 @@
 
 void	int_map_to_v_map(t_int_map *int_map, t_vector_map *v_map)
 {
-	size_t	c_height;
-	size_t	c_width;
+	size_t	y;
+	size_t	x;
 
-	c_width = -1;
-	while (++c_width < int_map->width)
+	y = -1;
+	while (++y < int_map->height)
 	{
-		v_map->map[c_width] = malloc(sizeof(t_vector3d) * int_map->width);
-		c_height = -1;
-		while (++c_height < int_map->height)
+		v_map->map[y] = malloc(sizeof(t_vector3d) * int_map->width);
+		if (!v_map->map[y])
+			exit(1);
+		x = -1;
+		while (++x < int_map->width)
 		{
-			v_map->map[c_width][c_height].y = (float)c_width;
-			v_map->map[c_width][c_height].x = (float)c_height;
-			//TODO fix this, cause a sigabort
-			v_map->map[c_width][c_height].z
-				= (float)int_map->map[c_width][c_height];
+			v_map->map[y][x].y = (float)y;
+			v_map->map[y][x].x = (float)x;
+			v_map->map[y][x].z = (float)int_map->map[y][x];
 		}
 	}
 }

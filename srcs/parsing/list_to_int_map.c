@@ -24,8 +24,12 @@ int	*create_array_line(int i, t_list *list)
 	while (x++ < i && list->content)
 		list = list->next;
 	current_line = ft_split((char *)list->content, ' ');
+	if (current_line == NULL)
+		exit(1);
 	line_size = ft_array_length((void **)current_line);
 	int_line = malloc(sizeof (int) * line_size);
+	if (int_line == NULL)
+		exit(1);
 	current_position = 0;
 	while (current_position < line_size)
 	{
@@ -71,6 +75,8 @@ void	get_int_map(t_list *list, t_int_map *int_map, t_vector_map *v_map)
 	v_map->width = int_map->width;
 	int_map->map = ft_calloc(sizeof (int *), int_map->height);
 	v_map->map = ft_calloc(sizeof (t_vector3d *), int_map->height);
+	if (int_map->map == NULL || v_map->map == NULL)
+		exit(1);
 	i = -1;
 	while (++i < int_map->height)
 		int_map->map[i] = create_array_line((int)i, list);

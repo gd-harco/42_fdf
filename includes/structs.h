@@ -29,14 +29,15 @@ typedef struct s_projection_matrix
 	float	mat4x4[4][4];
 }				t_projection_matrix;
 
-typedef struct s_world_info
+typedef struct s_projection_info
 {
 	float				fov;
 	float				near;
 	float				far;
 	float				aspect_ratio;
+	float				fov_rad;
 	t_projection_matrix	projection_matrix;
-}				t_world_info;
+}				t_projection_info;
 
 // Struct containing all information of the worlds in the 3D space
 typedef struct s_vector_map

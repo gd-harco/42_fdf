@@ -22,7 +22,8 @@ MLX              =   lib/mlx/libmlx.a
 
 HEADERS_LIST	=	fdf.h	parsing.h	structs.h	graphics.h
 
-SRCS_LIST		=	main.c	parsing/parsing_full.c	parsing/list_to_int_map.c parsing/int_to_vector.c graphics/graphics.c
+SRCS_LIST		=	main.c	parsing/parsing_full.c	parsing/list_to_int_map.c parsing/int_to_vector.c graphics/graphics.c \
+					graphics/fill_struct_calc.c
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
@@ -34,18 +35,18 @@ CC				=	cc
 
 CFLAGS			=	-Wall -Wextra -Werror -g3
 
-FRAMEWORKS		=	-Llib/libft -lft -lmlx
+FRAMEWORKS		=	-Llib/libft -lft
 
 # ---- OS Variables ---- #
 
 UNAME			=	$(shell uname -s)
 
 ifeq ($(UNAME), Linux)
-FRAMEWORKS		+= -lXext -lX11 -lm -lz
+FRAMEWORKS		+= -lmlx -lXext -lX11 -lm -lz
 endif
 
 ifeq ($(UNAME), Darwin)
-FRAMEWORKS		+=	-framework OpenGL -framework AppKit
+FRAMEWORKS		+=	-LLib/mlx -lmlx -framework OpenGL -framework AppKit
 endif
 
 # ---- Commands ---- #
@@ -60,7 +61,7 @@ all				:	${NAME}
 
 # ---- Variables Rules ---- #
 
-${NAME}			:	${OBJS} ${HEADERS} ${LIBFT}
+${NAME}			:	${OBJS} ${HEADERS} ${LIBFT} ${MLX}
 					${CC} ${CFLAGS} -I ${DIR_HEADERS} ${OBJS} ${FRAMEWORKS} -o ${NAME}
 #					@echo "\033[0;32m [${NAME}] : ✔️ Successfully built so_long executable\033[1;36m ${NAME}\033[0;32m for \033[1;36m${UNAME} !\033[0;00m"
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_full.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 13:59:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/19 13:59:00 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/20 14:14:45 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,17 @@ t_list	*put_file_in_list(int fd)
 	char	*buff;
 
 	buff = get_next_line(fd);
+	if (buff == NULL)
+		exit(1);
 	list = ft_lstnew(buff);
-	list->next = NULL;
 	while (buff)
 	{
 		buff = get_next_line(fd);
+		if (buff == NULL)
+			exit(1);
 		ft_lstadd_back(&list, ft_lstnew(buff));
+		if (ft_lstlast(list)->content == NULL)
+			exit(1);
 	}
 	return (list);
 }
@@ -51,7 +56,7 @@ t_vector_map	parsing_full(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf("error opening the provided file\n");
+		ft_putstr_fd("error opening the provided file\n", 2);
 		exit (1);
 	}
 	file_in_list = put_file_in_list(fd);

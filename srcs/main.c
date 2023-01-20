@@ -15,7 +15,6 @@
 int	main(int argc, char **argv)
 {
 	t_vector_map	vector_map;
-	t_mlx_info		mlx_infos;
 
 	if (argc != 2)
 	{
@@ -23,6 +22,6 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	vector_map = parsing_full(argv[1]);
-	graphic_launch(mlx_infos, vector_map);
+	graphic_launch(vector_map);
 	return (0);
 }
