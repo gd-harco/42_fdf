@@ -12,16 +12,34 @@
 
 #include "fdf.h"
 
-t_vector3d	multiply_matrix_vector(t_projection_matrix matrix,
-		t_vector3d vector)
-{
-	t_vector3d	result;
+static t_vector3d			multiply_matrix_vector(
+								t_projection_matrix matrix, t_vector3d vector);
+static t_projection_matrix	get_projection_matrix(void);
 
-	result.x = vector.x
-	return (result);
+// Initialize and fill the world info
+t_projection_info	fill_projection_info(void)
+{
+	t_projection_info	projection;
+
+	projection.fov = 90.0f;
+	projection.near = 0.1f;
+	projection.far = 1000.0f;
+	projection.aspect_ratio = (float)WIDTH / (float)HEIGHT;
+	projection.fov_rad = 1.0f
+		/ tanf(projection.fov * 0.5f / 180.0f * 3.14159f);
+	projection.projection_matrix = get_projection_matrix();
+	projection.projection_matrix.mat4x4[0][0]
+		= projection.aspect_ratio * projection.fov_rad;
+	projection.projection_matrix.mat4x4[1][1] = tanf(projection.fov / 2);
+	projection.projection_matrix.mat4x4[2][2] = projection.fov_rad;
+	projection.projection_matrix.mat4x4[2][3] = 1.0f;
+	projection.projection_matrix.mat4x4[3][2] = (-projection.far
+			* projection.near) / (projection.far - projection.near);
+	return (projection);
 }
 
-void	get_map_to_draw(t_vector_map *vector_map, t_projection_info *projection_info)
+void	get_map_to_draw(t_vector_map *vector_map,
+						t_projection_info *projection_info)
 {
 	size_t	x;
 	size_t	y;
@@ -32,49 +50,40 @@ void	get_map_to_draw(t_vector_map *vector_map, t_projection_info *projection_inf
 		x = -1;
 		while (++x < vector_map->width)
 		{
-			vector_map->map_to_draw[y][x] = multiply_matrix_vector
-				(projection_info->projection_matrix, vector_map->map[y][x]);
+			vector_map->map_to_draw[y][x] = multiply_matrix_vector(
+					projection_info->projection_matrix, vector_map->map[y][x]);
 		}
 	}
 }
 
-// Initialize and fill the world info
-t_projection_info fill_projection_info(void)
+static t_vector3d	multiply_matrix_vector(t_projection_matrix matrix,
+		t_vector3d vector)
 {
-	t_projection_info	*projection;
+	t_vector3d	result;
+	float		w;
 
-	projection = malloc(sizeof(t_projection_info));
-	projection->fov = 90.0f;
-	projection->near = 0.1f;
-	projection->far = 1000.0f;
-	projection->aspect_ratio = (float)WIDTH / (float)HEIGHT;
-	projection->fov_rad = 1.0f / tanf(projection->fov * 0.5f / 180.0f * 3.14159f);
-	projection->projection_matrix = get_projection_matrix();
-	projection->projection_matrix.mat4x4[0][0]
-		= projection->aspect_ratio * projection->fov_rad;
-	projection->projection_matrix.mat4x4[1][1] = tanf(projection->fov / 2);
-	projection->projection_matrix.mat4x4[2][2] = projection->fov_rad;
-	projection->projection_matrix.mat4x4[2][3] = 1.0f;
-	projection->projection_matrix.mat4x4[3][2] = (-projection->far
-			* projection->near) / (projection->far - projection->near);
-	return (*projection);
+	result.x = vector.x * matrix.mat4x4[0][0] + vector.y * matrix.mat4x4[1][0]
+		+ vector.z * matrix.mat4x4[2][0] + matrix.mat4x4[3][0];
+	result.y = vector.x * matrix.mat4x4[0][1] + vector.y * matrix.mat4x4[1][1]
+		+ vector.z * matrix.mat4x4[2][1] + matrix.mat4x4[3][1];
+	result.x = vector.x * matrix.mat4x4[0][2] + vector.y * matrix.mat4x4[1][2]
+		+ vector.z * matrix.mat4x4[2][2] + matrix.mat4x4[3][2];
+	w = vector.x * matrix.mat4x4[0][3] + vector.y * matrix.mat4x4[1][3]
+		+ vector.z * matrix.mat4x4[2][3] + matrix.mat4x4[3][3];
+	if (w != 0)
+	{
+		result.x /= w;
+		result.y /= w;
+		result.z /= w;
+	}
+	return (result);
 }
 
 // Initialize the projection matrix with 0
-t_projection_matrix	get_projection_matrix(void)
+static t_projection_matrix	get_projection_matrix(void)
 {
 	t_projection_matrix	matrix_projection;
-	int					x;
-	int					y;
 
-	y = -1;
-	while (++y < 4)
-	{
-		x = -1;
-		while (++x < 4)
-		{
-			matrix_projection.mat4x4[y][x] = 0.0f;
-		}
-	}
+	ft_bzero(&matrix_projection, sizeof(t_projection_matrix));
 	return (matrix_projection);
 }

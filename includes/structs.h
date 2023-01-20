@@ -16,9 +16,9 @@
 typedef struct s_vector3d	t_vector3d;
 
 // Structs require for the parsing
-typedef struct s_int_map
+typedef struct s_intt_map
 {
-	int		**map;
+	int	**map;
 	size_t	width;
 	size_t	height;
 }				t_int_map;
@@ -27,7 +27,7 @@ typedef struct s_int_map
 typedef struct s_projection_matrix
 {
 	float	mat4x4[4][4];
-}				t_projection_matrix;
+}			t_projection_matrix;
 
 typedef struct s_projection_info
 {
@@ -37,7 +37,7 @@ typedef struct s_projection_info
 	float				aspect_ratio;
 	float				fov_rad;
 	t_projection_matrix	projection_matrix;
-}				t_projection_info;
+}						t_projection_info;
 
 // Struct containing all information of the worlds in the 3D space
 typedef struct s_vector_map
@@ -67,7 +67,14 @@ typedef struct s_mlx_info
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	void	*img_ptr;
-}				t_mlx_info;
+}			t_mlx_info;
 
+typedef struct s_img_info
+{
+	void	*img_ptr;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_image_info;
 #endif

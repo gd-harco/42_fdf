@@ -14,7 +14,9 @@ DIR_HEADERS		=	includes/
 
 # ---- Libs variables ---- #
 
-LIBFT            =   lib/libft/libft.a
+LIBFT_PATH       =   lib/libft/
+
+LIBFT            =   ${LIBFT_PATH}libft.a
 
 MLX              =   lib/mlx/libmlx.a
 
@@ -22,8 +24,11 @@ MLX              =   lib/mlx/libmlx.a
 
 HEADERS_LIST	=	fdf.h	parsing.h	structs.h	graphics.h
 
-SRCS_LIST		=	main.c	parsing/parsing_full.c	parsing/list_to_int_map.c parsing/int_to_vector.c graphics/graphics.c \
-					graphics/fill_struct_calc.c
+SRCS_LIST		=	main.c	\
+					parsing/parsing.c	parsing/map_operations.c \
+					graphics/graphics.c \
+					graphics/fill_struct_calc.c \
+					graphics/drawing/drawing_function.c
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
@@ -33,7 +38,7 @@ OBJS			=	${SRCS_LIST:%.c=${DIR_OBJS}%.o}
 
 CC				=	cc
 
-CFLAGS			=	-Wall -Wextra -Werror -g3
+CFLAGS			=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 FRAMEWORKS		=	-Llib/libft -lft
 
@@ -79,27 +84,29 @@ ${MLX}		:
 
 ${OBJS}			:	| ${DIR_OBJS}
 
-${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
+${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS} Makefile
 					${CC} ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
 ${DIR_OBJS}		:
 					${MKDIR} ${DIR_OBJS}
 					${MKDIR} ${DIR_OBJS}/parsing
-					${MKDIR} ${DIR_OBJS}/graphics
+					${MKDIR} -p ${DIR_OBJS}/graphics/drawing
 #					@echo "\033[0;32m [${NAME}/bin] : ✔️ Successfully created bin directory\033[1;36m ${DIR_OBJS} !\033[0;00m"
 
 # ---- Usual Rules ---- #
 
 clean			:
 					${RM} ${OBJS}
+					${MAKE} -C ${LIBFT_PATH} clean
 #					@echo "\033[0;31m [${NAME}/bin] : ✔️ Successfully cleaned bin directories\033[1;36m bin/ !\033[0;00m"
 
 fclean			:	clean
 					${RM} ${NAME}
+					${MAKE} -C ${LIBFT_PATH} fclean
 #					@echo "\033[0;31m [${NAME}] : ✔️ Successfully deleted executable\033[1;36m ${NAME} !\033[0;00m"
 
-re				:	fclean all
+re				:	fclean
+					${MAKE} all
 
 
 .PHONY:	all clean fclean re
-.SILENT:

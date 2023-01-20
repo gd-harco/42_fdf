@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   drawing_function.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 12:58:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/20 00:05:06 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2023/01/20 16:10:00 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/01/20 16:10:00 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int argc, char **argv)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	t_vector_map	vector_map;
+	char	*dst;
 
-	if (argc != 2)
-	{
-		ft_printf("Usage: ./fdf <filename>\n");
-		return (0);
-	}
-	vector_map = parsing(argv[1]);
-	graphic_launch(vector_map);
-	return (0);
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned	int*)dst = color;
 }

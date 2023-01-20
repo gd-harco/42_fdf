@@ -12,21 +12,28 @@
 
 #ifndef FDF_H
 # define FDF_H
+
 # include "../lib/libft/includes/libft.h"
 # include "structs.h"
 # include "parsing.h"
 # include "graphics.h"
 # include <math.h>
+# include <stdio.h>
+
 # ifdef __APPLE__
 #  include "../lib/mlx/mlx.h"
 # endif
+
 # ifdef __linux__
 #  include <mlx.h>
 # endif
+
 # ifndef HEIGHT
 #  define HEIGHT 720
 # endif
+
 # ifndef WIDTH
 #  define WIDTH 1280
 # endif
+
 #endif

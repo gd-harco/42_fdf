@@ -15,9 +15,11 @@
 # include "fdf.h"
 # include <fcntl.h>
 
-t_list			*put_file_in_list(int fd);
-t_vector_map	parsing_full(char *filename);
-void			get_int_map(t_list *list, t_int_map *int_map,
-					t_vector_map *v_map);
+// parsing.c
+t_vector_map	parsing(char *filename);
+
+// map_operations.c
 void			int_map_to_v_map(t_int_map *int_map, t_vector_map *v_map);
+int				*create_int_line(int line_index, t_list *list);
+
 #endif

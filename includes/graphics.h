@@ -14,7 +14,6 @@
 # include "fdf.h"
 
 void				graphic_launch(t_vector_map vector_map);
-t_projection_matrix	get_projection_matrix(void);
 t_projection_info	fill_projection_info(void);
 void				get_map_to_draw(t_vector_map *vector_map,
 						t_projection_info *projection_info);
