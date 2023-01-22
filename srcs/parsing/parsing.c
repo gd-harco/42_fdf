@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 13:59:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/22 12:48:43 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/22 14:52:45 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ t_vector_map	parsing(char *filename)
 		exit (1);
 	}
 	file_in_list = put_file_in_list(fd);
+	close(fd);
 	get_vmap(file_in_list, &vector_map);
-	ft_lstclear(&file_in_list, free);
+	 ft_lstclear(&file_in_list, free);
 	return (vector_map);
 }
 
