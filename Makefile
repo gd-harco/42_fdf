@@ -26,9 +26,7 @@ HEADERS_LIST	=	fdf.h	parsing.h	structs.h	graphics.h
 
 SRCS_LIST		=	main.c	\
 					parsing/parsing.c	parsing/map_operations.c \
-					graphics/graphics.c \
-					graphics/fill_struct_calc.c \
-					graphics/drawing/drawing_function.c
+
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
@@ -66,7 +64,7 @@ all				:	${NAME}
 
 # ---- Variables Rules ---- #
 
-${NAME}			:	${OBJS} ${HEADERS} ${LIBFT} ${MLX}
+${NAME}			:	${OBJS} ${HEADERS} ${LIBFT}
 					${CC} ${CFLAGS} -I ${DIR_HEADERS} ${OBJS} ${FRAMEWORKS} -o ${NAME}
 #					@echo "\033[0;32m [${NAME}] : ✔️ Successfully built so_long executable\033[1;36m ${NAME}\033[0;32m for \033[1;36m${UNAME} !\033[0;00m"
 

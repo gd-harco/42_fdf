@@ -6,57 +6,46 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:18:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/20 15:18:00 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/22 12:52:49 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static void	create_vector(
+				t_vector3d *vector, size_t position, int line, char *z);
+
 //TODO Creer directement une map de vecteur pour opti
-int	*create_int_line(int line_index, t_list *list)
+t_vector3d	*create_line(int line_index, t_list *list)
 {
-	int		x;
-	size_t	current_position;
-	size_t	line_size;
-	int		*int_line;
-	char	**current_line;
+	int			x;
+	size_t		current_position;
+	size_t		line_size;
+	t_vector3d	*current_v_line;
+	char		**current_c_line;
 
 	x = 0;
 	while (x++ < line_index && list->content)
 		list = list->next;
-	current_line = ft_split((char *)list->content, ' ');
-	if (current_line == NULL)
+	current_c_line = ft_split((char *)list->content, ' ');
+	if (current_c_line == NULL)
 		exit(1);
-	line_size = ft_array_length((void **)current_line);
-	int_line = malloc(sizeof (int) * line_size);
-	if (int_line == NULL)
+	line_size = ft_array_length((void **)current_c_line);
+	current_v_line = malloc(sizeof (t_vector3d) * line_size);
+	if (current_v_line == NULL)
 		exit(1);
-	current_position = 0;
-	while (current_position < line_size)
-	{
-		int_line[current_position] = ft_atoi(current_line[current_position]);
-		current_position++;
-	}
-	ft_free_split(current_line);
-	return (int_line);
+	current_position = -1;
+	while (++current_position < line_size)
+		create_vector(&current_v_line[current_position],
+			current_position, line_index, current_c_line[current_position]);
+	ft_free_split(current_c_line);
+	return (current_v_line);
 }
 
-void	int_map_to_v_map(t_int_map *int_map, t_vector_map *v_map)
+static void	create_vector(
+				t_vector3d *vector, size_t position, int line, char *z)
 {
-	size_t	y;
-	size_t	x;
-
-	y = -1;
-	while (++y < int_map->height)
-	{
-		v_map->map[y] = malloc(sizeof(t_vector3d) * int_map->width);
-		if (!v_map->map[y])
-			exit(1);
-		x = -1;
-		while (++x < int_map->width)
-		{
-			v_map->map[y][x].y = (float)y;
-			v_map->map[y][x].x = (float)x;
-			v_map->map[y][x].z = (float)int_map->map[y][x];
-		}
-	}
+	vector->x = (float)position;
+	vector->y = (float)line;
+	vector->z = (float)ft_atoi(z);
 }
