@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 13:30:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/20 00:13:30 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/22 20:54:54 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_line
 {
 	t_vector3d	*start;
 	t_vector3d	*end;
+	float		slope;
 }				t_line;
 
 // Structs require for the mlx, the window and the image

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:18:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/22 12:52:49 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/22 20:49:46 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	create_vector(
 				t_vector3d *vector, size_t position, int line, char *z);
 
-//TODO Creer directement une map de vecteur pour opti
 t_vector3d	*create_line(int line_index, t_list *list)
 {
 	int			x;
