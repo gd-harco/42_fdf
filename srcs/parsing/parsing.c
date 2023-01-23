@@ -31,7 +31,7 @@ t_vector_map	parsing(char *filename)
 	file_in_list = put_file_in_list(fd);
 	close(fd);
 	get_vmap(file_in_list, &vector_map);
-	 ft_lstclear(&file_in_list, free);
+	ft_lstclear(&file_in_list, free);
 	return (vector_map);
 }
 
@@ -66,6 +66,7 @@ static void	get_vmap(t_list *list, t_vector_map *v_map)
 	v_map->height = ft_lstsize(list);
 	v_map->width = get_nb_word(list->content);
 	v_map->map = malloc(sizeof (t_vector3d *) * v_map->height);
+	v_map->map_to_draw = malloc(sizeof (t_vector3d *) * v_map->height);
 	if (v_map->map == NULL)
 		exit(1);
 	line_index = -1;

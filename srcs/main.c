@@ -22,11 +22,6 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	vector_map = parsing(argv[1]);
-	ft_printf("2");
-	(void)vector_map;
-	ft_free_array((void **)vector_map.map);
-	printf("%f %f %f\n", vector_map.map[0][0].x,vector_map.map[0][0].y, vector_map.map[0][0].z);
-	// graphic_launch(vector_map);
-
+	graphic_launch(vector_map);
 	return (0);
 }

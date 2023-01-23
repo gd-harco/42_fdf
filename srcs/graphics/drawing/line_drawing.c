@@ -12,22 +12,25 @@
 
 #include "fdf.h"
 
-void	go_up(float *e, float slope, float *y_pos)
+void	go_up(float *e, t_line *to_draw, t_vector3d *current_pos)
 {
-	*e -= slope;
+	float	m;
+
+	m = to_draw->slope;
+	*e -= m;
 	if (*e < 0.5)
 	{
-			*y_pos--;
+			current_pos->y--;
 			*e += 1;
 	}
 }
 
-void	go_down(float	*e, float slope, float *y_pos)
+void	go_down(float *e, t_line *to_draw, t_vector3d *current_position)
 {
-	*e += slope;
+	*e += to_draw->slope;
 	if (*e > 0.5f)
 	{
-		*y_pos++;
+		current_position->y++;
 		*e -= 1;
 	}
 }

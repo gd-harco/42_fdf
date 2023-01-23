@@ -26,6 +26,7 @@ HEADERS_LIST	=	fdf.h	parsing.h	structs.h	graphics.h
 
 SRCS_LIST		=	main.c	\
 					parsing/parsing.c	parsing/map_operations.c \
+					graphics/graphics.c	graphics/fill_struct_calc.c	graphics/drawing/line_drawing.c	graphics/drawing/drawing_function.c
 
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}

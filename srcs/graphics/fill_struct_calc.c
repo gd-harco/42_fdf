@@ -48,6 +48,7 @@ void	get_map_to_draw(t_vector_map *vector_map,
 	while (++y < vector_map->height)
 	{
 		x = -1;
+		vector_map->map_to_draw[y] = malloc(sizeof(t_vector3d) * vector_map->width);
 		while (++x < vector_map->width)
 		{
 			vector_map->map_to_draw[y][x] = multiply_matrix_vector(
