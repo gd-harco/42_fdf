@@ -105,7 +105,9 @@ fclean			:	clean
 #					@echo "\033[0;31m [${NAME}] : ✔️ Successfully deleted executable\033[1;36m ${NAME} !\033[0;00m"
 
 re				:	fclean
-					${MAKE} all
+					${MAKE} all -j3
 
+run				: re
+				./fdf 42.fdf
 
 .PHONY:	all clean fclean re

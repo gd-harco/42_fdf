@@ -53,6 +53,7 @@ struct s_vector3d
 	float	x;
 	float	y;
 	float	z;
+	float	w;
 };
 
 typedef struct s_line

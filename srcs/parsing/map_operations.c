@@ -12,9 +12,11 @@
 
 #include "fdf.h"
 
+//Prototype
 static void	create_vector(
 				t_vector3d *vector, size_t position, int line, char *z);
 
+//Functions body
 t_vector3d	*create_line(int line_index, t_list *list)
 {
 	int			x;

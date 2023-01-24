@@ -31,7 +31,8 @@ void	graphic_launch(t_vector_map vector_map)
 	get_map_to_draw(&vector_map, &projection_info);
 	ft_printf("map calculated\n");
 	draw_map(vector_map, &main_window);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, main_window.img_ptr, 0, 0);
+	mlx_put_image_to_window(
+		mlx.mlx_ptr, mlx.win_ptr, main_window.img_ptr, 0, 0);
 	mlx_loop(mlx.mlx_ptr);
 }
 
@@ -48,11 +49,13 @@ static void	draw_map(t_vector_map vector_map, t_image_info *img_info)
 		{
 			if (x + 1 < vector_map.width)
 			{
-				draw_line(img_info, vector_map.map_to_draw[y][x], vector_map.map_to_draw[y][x + 1]);
+				draw_line(img_info, vector_map.map_to_draw[y][x],
+					vector_map.map_to_draw[y][x + 1]);
 				ft_printf("drawed line %d - %d\n", y, x);
 			}
-				if (y + 1 < vector_map.height)
-				draw_line(img_info, vector_map.map_to_draw[y][x], vector_map.map_to_draw[y + 1][x]);
+			if (y + 1 < vector_map.height)
+				draw_line(img_info, vector_map.map_to_draw[y][x],
+					vector_map.map_to_draw[y + 1][x]);
 		}
 	}
 }
