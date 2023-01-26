@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 13:30:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/22 20:54:54 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/26 17:18:07 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,27 @@
 typedef struct s_vector3d	t_vector3d;
 
 // Structs require for the parsing
-typedef struct s_intt_map
+typedef struct s_int_map
 {
-	int	**map;
+	int		**map;
 	size_t	width;
 	size_t	height;
 }				t_int_map;
 
 // Structs containing info required for the projection
-typedef struct s_projection_matrix
+typedef struct s_matrix
 {
 	float	mat4x4[4][4];
-}			t_projection_matrix;
+}			t_matrix;
 
 typedef struct s_projection_info
 {
-	float				fov;
-	float				near;
-	float				far;
-	float				aspect_ratio;
-	float				fov_rad;
-	t_projection_matrix	projection_matrix;
+	float		fov;
+	float		near;
+	float		far;
+	float		aspect_ratio;
+	float		fov_rad;
+	t_matrix	projection_matrix;
 }						t_projection_info;
 
 // Struct containing all information of the worlds in the 3D space
@@ -65,18 +65,27 @@ typedef struct s_line
 
 // Structs require for the mlx, the window and the image
 
-typedef struct s_mlx_info
+typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-}			t_mlx_info;
+}			t_mlx;
 
-typedef struct s_img_info
+typedef struct s_img
 {
 	void	*img_ptr;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}	t_image_info;
+}	t_img;
+
+typedef struct s_fdf
+{
+	t_mlx		*mlx;
+	t_img		*img;
+	t_vector3d	map;
+	t-matrices	matrices;
+}
+
 #endif

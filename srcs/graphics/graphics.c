@@ -6,19 +6,19 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:09:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/20 00:14:01 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/26 17:13:41 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <printf.h>
 
-static void	draw_map(t_vector_map vector_map, t_image_info *img_info);
+static void	draw_map(t_vector_map vector_map, t_img *img_info);
 
 void	graphic_launch(t_vector_map vector_map)
 {
-	t_mlx_info			mlx;
-	t_image_info		main_window;
+	t_mlx			mlx;
+	t_img		main_window;
 	t_projection_info	projection_info;
 
 	mlx.mlx_ptr = mlx_init();
@@ -36,7 +36,7 @@ void	graphic_launch(t_vector_map vector_map)
 	mlx_loop(mlx.mlx_ptr);
 }
 
-static void	draw_map(t_vector_map vector_map, t_image_info *img_info)
+static void	draw_map(t_vector_map vector_map, t_img *img_info)
 {
 	size_t	y;
 	size_t	x;

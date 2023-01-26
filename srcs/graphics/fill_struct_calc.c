@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_projection_matrix.c                           :+:      :+:    :+:   */
+/*   fill_struct_calc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:30:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/20 11:30:00 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/26 12:02:41 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 //Prototype
-static t_vector3d			multiply_matrix_vector(
-								t_projection_matrix matrix, t_vector3d vector);
-static t_projection_matrix	get_projection_matrix(void);
+
+static t_matrix	get_projection_matrix(void);
 
 //Function body
 
@@ -67,27 +66,11 @@ void	get_map_to_draw(t_vector_map *map,
 	}
 }
 
-static t_vector3d	multiply_matrix_vector(t_projection_matrix matrix,
-		t_vector3d vector)
-{
-	t_vector3d	result;
-
-	result.x = vector.x * matrix.mat4x4[0][0] + vector.y * matrix.mat4x4[1][0]
-		+ vector.z * matrix.mat4x4[2][0] + vector.w * matrix.mat4x4[3][0];
-	result.y = vector.x * matrix.mat4x4[0][1] + vector.y * matrix.mat4x4[1][1]
-		+ vector.z * matrix.mat4x4[2][1] + vector.w * matrix.mat4x4[3][1];
-	result.x = vector.x * matrix.mat4x4[0][2] + vector.y * matrix.mat4x4[1][2]
-		+ vector.z * matrix.mat4x4[2][2] + vector.w * matrix.mat4x4[3][2];
-	result.w = vector.x * matrix.mat4x4[0][3] + vector.y * matrix.mat4x4[1][3]
-		+ vector.z * matrix.mat4x4[2][3] + vector.w * matrix.mat4x4[3][3];
-	return (result);
-}
-
 // Initialize the projection matrix with 0
-static t_projection_matrix	get_projection_matrix(void)
+static t_matrix	get_projection_matrix(void)
 {
-	t_projection_matrix	matrix_projection;
+	t_matrix	matrix_projection;
 
-	ft_bzero(&matrix_projection, sizeof(t_projection_matrix));
+	ft_bzero(&matrix_projection, sizeof(t_matrix));
 	return (matrix_projection);
 }

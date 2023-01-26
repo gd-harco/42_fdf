@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 13:04:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/26 11:51:53 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2023/01/26 11:55:12 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/01/26 14:25:27 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef MATRIX_H
+# define MATRIX_H
 
-# include "../lib/libft/includes/libft.h"
-# include "structs.h"
-# include "parsing.h"
-# include "graphics.h"
-# include "matrix.h"
-# include <math.h>
-# include <stdio.h>
-
-# ifdef __APPLE__
-#  include "../lib/mlx/mlx.h"
-# endif
-
-# ifdef __linux__
-#  include <mlx.h>
-# endif
-
-# ifndef HEIGHT
-#  define HEIGHT 720
-# endif
-
-# ifndef WIDTH
-#  define WIDTH 1280
-# endif
+t_vector3d	multiply_matrix_vector(t_matrix matrix,
+				t_vector3d vector);
+t_matrix	m_make_identity(void);
+t_matrix	m_make_rotation_x(float angle);
+t_matrix	m_make_rotation_y(float angle);
+t_matrix	m_make_rotation_z(float angle);
+t_matrix	m_make_translation(float x, float y, float z);
 
 #endif

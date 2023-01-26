@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:09:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/22 21:15:43 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/26 17:13:28 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void				get_map_to_draw(t_vector_map *map,
 						t_projection_info *projection_info);
 
 //drawing_functions.c
-void				draw_line(t_image_info *data, t_vector3d p1, t_vector3d p2);
+void				draw_line(t_img *data, t_vector3d p1, t_vector3d p2);
 
 //line_drawing.c
 void				go_up(float *e, t_line *to_draw, t_vector3d *current_pos);
-void				go_down(float *e, t_line *to_draw, t_vector3d *current_position);
+void				go_down(float *e, t_line *to_draw,
+						t_vector3d *current_position);
 
 #endif

@@ -22,11 +22,12 @@ MLX              =   lib/mlx/libmlx.a
 
 # ---- Files ---- #
 
-HEADERS_LIST	=	fdf.h	parsing.h	structs.h	graphics.h
+HEADERS_LIST	=	fdf.h	parsing.h	structs.h	graphics.h	matrix.h
 
 SRCS_LIST		=	main.c	\
 					parsing/parsing.c	parsing/map_operations.c \
-					graphics/graphics.c	graphics/fill_struct_calc.c	graphics/drawing/line_drawing.c	graphics/drawing/drawing_function.c
+					graphics/graphics.c	graphics/fill_struct_calc.c	graphics/drawing/line_drawing.c	graphics/drawing/drawing_function.c \
+					matrix/matrix_operations.c	matrix/matrix_operations_2.c
 
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
@@ -90,6 +91,8 @@ ${DIR_OBJS}		:
 					${MKDIR} ${DIR_OBJS}
 					${MKDIR} ${DIR_OBJS}/parsing
 					${MKDIR} -p ${DIR_OBJS}/graphics/drawing
+					${MKDIR} ${DIR_OBJS}/matrix
+
 #					@echo "\033[0;32m [${NAME}/bin] : ✔️ Successfully created bin directory\033[1;36m ${DIR_OBJS} !\033[0;00m"
 
 # ---- Usual Rules ---- #
@@ -105,6 +108,7 @@ fclean			:	clean
 #					@echo "\033[0;31m [${NAME}] : ✔️ Successfully deleted executable\033[1;36m ${NAME} !\033[0;00m"
 
 re				:	fclean
+					rm -rf ${DIR_OBJS}
 					${MAKE} all -j3
 
 run				: re
