@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 13:04:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/26 11:51:53 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/26 17:30:43 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@
 # ifndef WIDTH
 #  define WIDTH 1280
 # endif
+
+void	initialisation(char *filename, t_fdf *fdf);
 
 #endif

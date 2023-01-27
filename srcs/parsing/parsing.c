@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 13:59:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/22 14:52:45 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/26 19:22:49 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@ static t_list	*put_file_in_list(int fd);
 static void		get_vmap(t_list *list, t_vector_map *v_map);
 static size_t	get_nb_word(char *vstr);
 
-t_vector_map	parsing(char *filename)
+void	parsing(char *filename, t_vector_map *map)
 {
 	int				fd;
 	t_list			*file_in_list;
-	t_vector_map	vector_map;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -30,9 +29,8 @@ t_vector_map	parsing(char *filename)
 	}
 	file_in_list = put_file_in_list(fd);
 	close(fd);
-	get_vmap(file_in_list, &vector_map);
+	get_vmap(file_in_list, map);
 	ft_lstclear(&file_in_list, free);
-	return (vector_map);
 }
 
 static t_list	*put_file_in_list(int fd)

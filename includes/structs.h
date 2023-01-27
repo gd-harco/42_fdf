@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 13:30:00 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/01/26 17:18:07 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/01/26 17:41:13 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ typedef struct s_img
 
 typedef struct s_fdf
 {
-	t_mlx		*mlx;
-	t_img		*img;
-	t_vector3d	map;
-	t-matrices	matrices;
-}
+	t_mlx			mlx;
+	t_img			img;
+	t_vector_map	map;
+	// t_matrices		matrices;
+}	t_fdf;
 
 #endif
